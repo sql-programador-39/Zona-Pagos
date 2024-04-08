@@ -1,0 +1,15 @@
+.ant-table-thead .ant-table-cell {
+  background-color: #efefef !important;
+}
+
+.ant-table-cell:before{
+  background-color: #999999 !important;
+}
+
+.ant-pagination-item {
+  border-color: #1e40af  !important;
+}
+
+.ant-pagination-item a{
+  color: #1e40af  !important;
+}

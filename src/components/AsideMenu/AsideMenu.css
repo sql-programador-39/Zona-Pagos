@@ -1,0 +1,4 @@
+.ant-menu-item-selected {
+  background-color: #bfdbfe !important; /* Cambia esto al color deseado */
+  color: #1e40af !important; /* Cambia esto al color de texto deseado */
+}
