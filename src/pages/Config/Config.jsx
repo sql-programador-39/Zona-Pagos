@@ -56,11 +56,11 @@ const Config = () => {
 
         <div className="my-14">
           <form action="" className='grid lg:grid-cols-2 gap-5 grid-cols-1'>
-            <div className='grid grid-cols-custom items-center'>
+            <div className='grid sm:grid-cols-custom grid-cols-1 items-center'>
               <label htmlFor="id-commerce" className={ style.label }>IdComercio:</label>
               <input 
                 type="number" 
-                className={ style.input } 
+                className={` ${style.input} mt-3 sm:m-0`} 
                 name='id-commerce' 
                 id='id-commerce'
                 placeholder='Id del comercio'
@@ -71,11 +71,11 @@ const Config = () => {
               />
             </div>
 
-            <div className='grid grid-cols-custom items-center'>
+            <div className='grid sm:grid-cols-custom grid-cols-1 items-center'>
               <label htmlFor="client" className={ style.label }>Cliente:</label>
               <input 
                 type="text" 
-                className={ style.input } 
+                className={` ${style.input} mt-3 sm:m-0 `}
                 name='client' 
                 id='client'
                 placeholder='Nombre del cliente'
@@ -86,11 +86,11 @@ const Config = () => {
               />
             </div>
 
-            <div className='grid grid-cols-custom items-center'>
+            <div className='grid sm:grid-cols-custom grid-cols-1 items-center'>
               <label htmlFor="service" className={ style.label }>Servicio:</label>
               <input 
                 type="text" 
-                className={ style.input } 
+                className={` ${style.input} mt-3 sm:m-0 `} 
                 name='service' 
                 id='service'
                 placeholder='Nombre del servicio'
@@ -123,7 +123,7 @@ const Config = () => {
               <select 
                 name="select-collection" 
                 id="select-collection" 
-                className={` ${style.input} mt-3 `}
+                className={` ${style.input} mt-3 lg:m-0 `}
                 onChange={ e => {
                   setTypeCollection(e.target.value)
                 }}
@@ -138,7 +138,7 @@ const Config = () => {
             <div className="grid lg:grid-cols-custom grid-cols-1 items-center">
               <label htmlFor="start-date" className="font-bold text-xl">Filtrar por fechas</label>
 
-              <div className="grid lg:grid-cols-3 grid-cols-2 gap-5 mt-3">
+              <div className="grid lg:grid-cols-3 grid-cols-2 gap-5 mt-3 lg:m-0">
                 <input 
                   type="date" 
                   name='start-date'
