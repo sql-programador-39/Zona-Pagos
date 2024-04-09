@@ -84,18 +84,18 @@ const Collection = () => {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               <button 
                 type="button" 
-                className="bg-blue-800 text-white font-bold px-2 py-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline xl:w-3/4 w-full" 
+                className={`${ style.button } xl:w-3/4 w-full`} 
                 onClick={handleClickedGenerate}
               ><FontAwesomeIcon icon={faFileCircleCheck} /> Generar</button>
 
               <button 
-                className={ buttonGenerate ? "bg-blue-800 text-white font-bold px-2 py-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline w-3/4"  : "bg-blue-800 text-white font-bold px-2 py-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline xl:w-3/4 w-full" } // Si buttonGenerate es true, entonces style.button, sino style.buttonDisabled
+                className={ buttonGenerate ? `${ style.button } xl:w-3/4 w-full` : `${ style.buttonDisabled } xl:w-3/4 w-full` }
                 disabled={!buttonGenerate} // Deshabilitar si !buttonGenerate (es decir, buttonGenerate es false)
                 onClick={handleClickedComunication}
               ><FontAwesomeIcon icon={faEnvelopeCircleCheck} /> Comunicación</button>
 
               <button 
-                className={ buttonGenerate ? "bg-blue-800 text-white font-bold px-2 py-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline w-3/4"  : "bg-blue-800 text-white font-bold px-2 py-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline xl:w-3/4 w-full" } // Si buttonGenerate es true, entonces style.button, sino style.buttonDisabled
+                className={ buttonGenerate ? `${ style.button } xl:w-3/4 w-full`  : `${ style.buttonDisabled } xl:w-3/4 w-full` } 
                 disabled={!buttonGenerate} // Deshabilitar si !buttonGenerate (es decir, buttonGenerate es false)
                 onClick={handleClickedProcess}
               ><FontAwesomeIcon icon={faCircleCheck} /> Procesar Recaudo</button>
@@ -115,7 +115,7 @@ const Collection = () => {
 
         <div className="flex justify-end mt-5">
           <button 
-            className={ style.button }
+            className={`${ style.button } w-1/2 sm:w-1/4`}
             onClick={handleClickedUpdate}
           ><FontAwesomeIcon icon={faClipboardCheck} /> Actualizar</button>
         </div>

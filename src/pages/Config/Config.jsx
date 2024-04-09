@@ -103,7 +103,7 @@ const Config = () => {
 
             <button 
               type="submit" 
-              className="bg-blue-800 text-white font-bold px-2 py-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline w-3/4 lg:w-full mx-auto lg:m-0 gl:w-1/3" 
+              className={`${ style.button } w-3/4 lg:w-full mx-auto lg:m-0 gl:w-1/3` }
               onClick={handleSubmitConfig}
             ><FontAwesomeIcon icon={faCircleCheck} /> Aplicar configuración</button>
 
@@ -157,7 +157,7 @@ const Config = () => {
                 />
                 <button 
                   type="submit" 
-                  className="bg-blue-800 text-white font-bold px-2 py-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+                  className={ style.button }
                   onClick={handleSubmitFilter}
                   ><FontAwesomeIcon icon={faCircleCheck} /> Aplicar filtros</button>
 
