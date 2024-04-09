@@ -65,7 +65,7 @@ const Collection = () => {
         <h1 className={ style.h1 }>Construir referencias</h1>
         
         <form action="" className="my-14">
-          <div className="grid grid-cols-custom mb-10 gap-5">
+          <div className="grid lg:grid-cols-custom mb-10 gap-5">
             <div className="flex items-center">
               <label htmlFor="check-day" className={ style.label }>Generación al dia</label>
               <input type="checkbox" name="check-day" id="check-day" className="checkbox-round ms-3" checked={checkbox === "Generacion al dia"} value="Generacion al dia" onChange={handleChangeCheckbox} />
@@ -77,25 +77,25 @@ const Collection = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-custom my-5 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-custom my-5 gap-5">
             
             <input value={date} type="date" className={ style.input } onChange={handleChangeDate} disabled={checkbox === "Generacion al dia"}/>
             
-            <div className="flex gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               <button 
                 type="button" 
-                className={ style.button } 
+                className="bg-blue-800 text-white font-bold px-2 py-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline xl:w-3/4 w-full" 
                 onClick={handleClickedGenerate}
               ><FontAwesomeIcon icon={faFileCircleCheck} /> Generar</button>
 
               <button 
-                className={ buttonGenerate ? style.button  : style.buttonDisabled } // Si buttonGenerate es true, entonces style.button, sino style.buttonDisabled
+                className={ buttonGenerate ? "bg-blue-800 text-white font-bold px-2 py-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline w-3/4"  : "bg-blue-800 text-white font-bold px-2 py-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline xl:w-3/4 w-full" } // Si buttonGenerate es true, entonces style.button, sino style.buttonDisabled
                 disabled={!buttonGenerate} // Deshabilitar si !buttonGenerate (es decir, buttonGenerate es false)
                 onClick={handleClickedComunication}
               ><FontAwesomeIcon icon={faEnvelopeCircleCheck} /> Comunicación</button>
 
               <button 
-                className={ buttonGenerate ? style.button  : style.buttonDisabled } // Si buttonGenerate es true, entonces style.button, sino style.buttonDisabled
+                className={ buttonGenerate ? "bg-blue-800 text-white font-bold px-2 py-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline w-3/4"  : "bg-blue-800 text-white font-bold px-2 py-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline xl:w-3/4 w-full" } // Si buttonGenerate es true, entonces style.button, sino style.buttonDisabled
                 disabled={!buttonGenerate} // Deshabilitar si !buttonGenerate (es decir, buttonGenerate es false)
                 onClick={handleClickedProcess}
               ><FontAwesomeIcon icon={faCircleCheck} /> Procesar Recaudo</button>
@@ -119,7 +119,7 @@ const Collection = () => {
             onClick={handleClickedUpdate}
           ><FontAwesomeIcon icon={faClipboardCheck} /> Actualizar</button>
         </div>
-        
+
       </section>
     </>
   )
