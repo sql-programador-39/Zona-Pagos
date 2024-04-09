@@ -118,12 +118,12 @@ const Config = () => {
 
         <div className="mb-10">
           <form action="" className="grid gl:grid-cols-2 gap-5 grid-cols-1">
-            <div className="grid grid-cols-custom items-center">
+            <div className="grid lg:grid-cols-custom grid-cols-1 items-center">
               <label htmlFor="select-collection" className="font-bold text-xl">Tipo Recaudo</label>
               <select 
                 name="select-collection" 
                 id="select-collection" 
-                className={ style.input }
+                className={` ${style.input} mt-3 `}
                 onChange={ e => {
                   setTypeCollection(e.target.value)
                 }}
@@ -135,10 +135,10 @@ const Config = () => {
               </select>
             </div>
 
-            <div className="grid grid-cols-custom items-center">
+            <div className="grid lg:grid-cols-custom grid-cols-1 items-center">
               <label htmlFor="start-date" className="font-bold text-xl">Filtrar por fechas</label>
 
-              <div className="grid grid-cols-3 gap-5">
+              <div className="grid lg:grid-cols-3 grid-cols-2 gap-5 mt-3">
                 <input 
                   type="date" 
                   name='start-date'
