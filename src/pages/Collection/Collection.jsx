@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { 
@@ -17,9 +17,19 @@ const Collection = () => {
   const [buttonGenerate, setButtonGenerate] = useState(false)
   const [buttonComunication, setButtonComunication] = useState(false)
   const [buttonProcess, setButtonProcess] = useState(false)
+  const today = new Date()
+
+  useEffect(() => {
+    setDate(today.toISOString().split('T')[0])
+  }, [])
 
   const handleChangeCheckbox = (e) => {
     setCheckbox(e.target.value);
+
+
+    if(e.target.value === "Generacion al dia") {
+      setDate(today.toISOString().split('T')[0])
+    }
   }
 
   const handleChangeDate = (e) => {
@@ -61,7 +71,7 @@ const Collection = () => {
               <input type="checkbox" name="check-day" id="check-day" className="checkbox-round ms-3" checked={checkbox === "Generacion al dia"} value="Generacion al dia" onChange={handleChangeCheckbox} />
             </div>
 
-            <div className="">
+            <div className="flex items-center">
               <label htmlFor="check-proyec" className={ style.label }>Generación con proyección</label>
               <input type="checkbox" name="check-proyec" id="check-proyec" className="checkbox-round  ms-3" checked={checkbox === "Generacion con proyeccion"} value="Generacion con proyeccion" onChange={handleChangeCheckbox} />
             </div>
@@ -69,7 +79,7 @@ const Collection = () => {
 
           <div className="grid grid-cols-custom my-5 gap-5">
             
-            <input type="date" className={ style.input } onChange={handleChangeDate} />
+            <input value={date} type="date" className={ style.input } onChange={handleChangeDate} disabled={checkbox === "Generacion al dia"}/>
             
             <div className="flex gap-5">
               <button 
@@ -109,8 +119,7 @@ const Collection = () => {
             onClick={handleClickedUpdate}
           ><FontAwesomeIcon icon={faClipboardCheck} /> Actualizar</button>
         </div>
-
-
+        
       </section>
     </>
   )

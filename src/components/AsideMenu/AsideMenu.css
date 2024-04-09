@@ -2,3 +2,15 @@
   background-color: #bfdbfe !important; /* Cambia esto al color deseado */
   color: #1e40af !important; /* Cambia esto al color de texto deseado */
 }
+
+.div-menu {
+  border-right: 1px solid rgba(0, 0, 0, .09);
+  width: 200px;
+  transition: all 0.3s;
+}
+
+.div-menu-collapse {
+  width: 80px;
+  border-right: 1px solid rgba(0, 0, 0, .09);
+  transition: all 0.3s;
+}

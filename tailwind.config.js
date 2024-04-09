@@ -9,6 +9,9 @@ export default {
       gridTemplateColumns: {
         "custom": "1fr 3fr"
       },
+      screens: {
+        'gl': '1440px',
+      },
       // rounded checkbox
     },
   },

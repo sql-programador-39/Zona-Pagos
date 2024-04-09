@@ -17,7 +17,7 @@ const Layout = () => {
       </header>
 
       <main>
-        <aside>
+        <aside className='hidden md:inline'>
           <AsideMenu 
             collapsed={ collapsed }
             setCollapsed={ setCollapsed }

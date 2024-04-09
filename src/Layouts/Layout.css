@@ -17,3 +17,12 @@
 .main-content2 > * {
   max-width: 100%;
 }
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 25px;
+  }
+  .main-content2 {
+    padding: 25px;
+  }
+}

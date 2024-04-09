@@ -4,16 +4,49 @@ const ConfigTable = () => {
   const dataSource = [
     {
       key: '1',
-      name: 'Mike',
-      age: 32,
-      address: '10 Downing Street',
+      grupo: 'Mike',
+      referencia: 32,
+      valor: '10 Downing Street',
+      recaudo: '5000',
+      reversado: 'No',
+      fecha: '2021-09-21',
     },
     {
       key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
+      grupo: 'Mike',
+      referencia: 32,
+      valor: '10 Downing Street',
+      recaudo: '5000',
+      reversado: 'No',
+      fecha: '2021-09-21',
     },
+    {
+      key: '3',
+      grupo: 'Mike',
+      referencia: 32,
+      valor: '10 Downing Street',
+      recaudo: '5000',
+      reversado: 'No',
+      fecha: '2021-09-21',
+    },
+    {
+      key: '4',
+      grupo: 'Mike',
+      referencia: 32,
+      valor: '10 Downing Street',
+      recaudo: '5000',
+      reversado: 'No',
+      fecha: '2021-09-21',
+    },
+    {
+      key: '5',
+      grupo: 'Mike',
+      referencia: 32,
+      valor: '10 Downing Street',
+      recaudo: '5000',
+      reversado: 'No',
+      fecha: '2021-09-21',
+    }
   ];
   
   const columns = [
@@ -52,7 +85,7 @@ const ConfigTable = () => {
     <>
       <Table locale={{ emptyText: (<Empty image={ Empty.PRESENTED_IMAGE_DEFAULT } description={ false }>
         <p>No se encontraron registros</p>
-      </Empty>) }} dataSource={ dataSource } columns={ columns } />  
+      </Empty>) }} dataSource={ dataSource } columns={ columns } pagination={{ pageSize: 5 }} />  
     </>
   )
 }
