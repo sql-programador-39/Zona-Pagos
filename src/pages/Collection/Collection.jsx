@@ -111,7 +111,9 @@ const Collection = () => {
         
         <h2 className="text-2xl font-bold mb-5">Correciones</h2>
 
-        <CollectionTable />
+        <div>
+          <CollectionTable />
+        </div>
 
         <div className="flex justify-end mt-5">
           <button 

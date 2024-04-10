@@ -13,3 +13,16 @@
 .ant-pagination-item-active a{
   color: #1e40af  !important;
 }
+
+@media (max-width: 580px) {
+  
+  .ant-table-wrapper .ant-table-tbody>tr>td {
+    padding: 5px 5px;
+    font-size: 12px;
+  }
+  
+  .ant-table-wrapper .ant-table-thead>tr>th {
+    padding: 5px 5px;
+    font-size: 12px;
+  }
+}

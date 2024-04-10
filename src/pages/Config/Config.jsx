@@ -103,7 +103,7 @@ const Config = () => {
 
             <button 
               type="submit" 
-              className={`${ style.button } w-3/4 lg:w-full mx-auto lg:m-0 gl:w-1/3` }
+              className={`${ style.button } w-3/4 lg:w-full mx-auto lg:m-0 gl:w-1/4` }
               onClick={handleSubmitConfig}
             ><FontAwesomeIcon icon={faCircleCheck} /> Aplicar configuración</button>
 
@@ -171,10 +171,11 @@ const Config = () => {
         </div>
 
 
-        <div>
-          <ConfigTable />
-        </div>
       </section>
+
+      <div>
+        <ConfigTable />
+      </div>
     </>
   )
 }

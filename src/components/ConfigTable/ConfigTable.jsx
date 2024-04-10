@@ -85,7 +85,7 @@ const ConfigTable = () => {
     <>
       <Table locale={{ emptyText: (<Empty image={ Empty.PRESENTED_IMAGE_DEFAULT } description={ false }>
         <p>No se encontraron registros</p>
-      </Empty>) }} dataSource={ dataSource } columns={ columns } pagination={{ pageSize: 5 }} />  
+      </Empty>) }} dataSource={ dataSource } columns={ columns } /* pagination={{ pageSize: 5 }} */ />  
     </>
   )
 }

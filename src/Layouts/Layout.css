@@ -18,11 +18,11 @@
   max-width: 100%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 580px) {
   .main-content {
-    padding: 25px;
+    padding: 10px;
   }
   .main-content2 {
-    padding: 25px;
+    padding: 10px;
   }
 }

@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear, faSackDollar } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -20,6 +22,18 @@ function getItem(label, key, icon, children, type) {
 
 const AsideMenu = ({ collapsed, setCollapsed }) => {
 
+  const location = useLocation();
+
+  const [selectedKey, setSelectedKey] = useState(null);
+
+  useEffect(() => {
+    if (location.pathname === '/config') {
+      setSelectedKey('1');
+    } else if (location.pathname === '/recaudo') {
+      setSelectedKey('2');
+    }
+  }, [location]);
+
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   };
@@ -41,7 +55,8 @@ const AsideMenu = ({ collapsed, setCollapsed }) => {
       </div>
 
       <Menu
-        defaultSelectedKeys={ ['1'] }
+        defaultSelectedKeys={['1']}
+        selectedKeys={[ selectedKey ]}
         mode="inline"
         inlineCollapsed={ collapsed }
         items={ items }

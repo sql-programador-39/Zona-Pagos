@@ -24,3 +24,7 @@
 .checkbox-round:checked {
   background-color: #1e40af;
 }
+
+main {
+  width: 100vw;
+}

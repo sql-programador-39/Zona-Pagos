@@ -9,24 +9,20 @@ import LogoOpa from '../../assets/Logo-opa.png';
 
 
 const Nav = () => {
-  
+
   const navigate = useNavigate();
   
-  const [hamCollapsed, setHamCollapsed] = useState(true);
+  const [hamCollapsed, setHamCollapsed] = useState(false);
   const dropdownRef = useRef();
 
   useEffect(() => {
-    console.log('useEffect');
-    const handleDropdownToggle = () => {
-      console.log('handleDropdownToggle');
-      if (dropdownRef.current) {
 
-        console.log(dropdownRef.current.classList.contains('ant-dropdown-open'));
-        setHamCollapsed(false);
-        console.log('setHamCollapsed1');
-      } else {
+    const handleDropdownToggle = () => {
+
+      if(dropdownRef.current.classList.contains('ant-dropdown-open')) {
         setHamCollapsed(true);
-        console.log('setHamCollapsed2');
+      } else {
+        setHamCollapsed(false);
       }
     };
 
@@ -34,8 +30,9 @@ const Nav = () => {
 
     return () => {
       document.removeEventListener('click', handleDropdownToggle);
-    };
-  }, [hamCollapsed]);
+    }
+
+  }, [dropdownRef]);
 
   const items = [
     {
@@ -69,28 +66,30 @@ const Nav = () => {
   ];
 
   return (
-    <nav className={style.nav}>
-      <div className='flex items-center gap-5'>
-        <img src={ LogoOpa } alt="Logo-opa" width={ "65px" } height={ "40px" } />
-        <p className='text-2xl font-bold'>Zona Pagos</p>
-      </div>
+    <div>
+      <nav className={`${style.nav} bg-white`}>
+        <div className='flex items-center gap-5'>
+          <img src={ LogoOpa } alt="Logo-opa" width={ "65px" } height={ "40px" } />
+          <p className='text-2xl font-bold'>Zona Pagos</p>
+        </div>
 
-      <div className='border-l-2 pl-5 cursor-pointer' >
-        <Dropdown
-          menu={{ items }}
-          trigger={ ['click'] }
-        >
-          <div> 
-            <Space>
-              OPA S.A.S
-              <div className='' ref={dropdownRef}>
-                { hamCollapsed ? <FontAwesomeIcon icon={faBars} /> : <FontAwesomeIcon icon={faX} /> }
-              </div>
-            </Space>
-          </div>
-        </Dropdown>
-      </div>
-    </nav>
+        <div className='border-l-2 pl-5 cursor-pointer'>
+          <Dropdown
+            menu={{ items }}
+            trigger={ ['click'] }
+          >
+            <div ref={dropdownRef} className=''> 
+              <Space>
+                OPA S.A.S
+                <div className='flex items-center'>
+                  { hamCollapsed ? <FontAwesomeIcon className='w-6 h-6' icon={ faX } /> : <FontAwesomeIcon className='w-6 h-6' icon={ faBars } /> }
+                </div>
+              </Space>
+            </div>
+          </Dropdown>
+        </div>
+      </nav>
+    </div>
   )
 }
 

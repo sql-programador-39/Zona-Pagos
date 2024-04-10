@@ -12,11 +12,11 @@ const Layout = () => {
 
   return (
     <>
-      <header>
+      <header className='fixed w-full z-10'>
         <Nav />
       </header>
 
-      <main>
+      <main className='pt-16'>
         <aside className='hidden md:inline'>
           <AsideMenu 
             collapsed={ collapsed }
