@@ -54,7 +54,7 @@ const Config = () => {
       <section>
         <h1 className={ style.h1 }>Configuración</h1>
 
-        <div className="my-14">
+        <div className="my-8 md:my-10">
           <form action="" className='grid lg:grid-cols-2 gap-5 grid-cols-1'>
             <div className='grid sm:grid-cols-custom grid-cols-1 items-center'>
               <label htmlFor="id-commerce" className={ style.label }>IdComercio:</label>
@@ -157,7 +157,7 @@ const Config = () => {
                 />
                 <button 
                   type="submit" 
-                  className={ style.button }
+                  className={ `${style.button} col-span-2 lg:col-span-1 w-3/4 mx-auto lg:m-0 lg:w-full` }
                   onClick={handleSubmitFilter}
                   ><FontAwesomeIcon icon={faCircleCheck} /> Aplicar filtros</button>
 

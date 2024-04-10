@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate  } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Dropdown, Space } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPowerOff, faGears, faSackDollar, faX, faBars } from '@fortawesome/free-solid-svg-icons';
@@ -9,8 +9,6 @@ import LogoOpa from '../../assets/Logo-opa.png';
 
 
 const Nav = () => {
-
-  const navigate = useNavigate();
   
   const [hamCollapsed, setHamCollapsed] = useState(false);
   const dropdownRef = useRef();

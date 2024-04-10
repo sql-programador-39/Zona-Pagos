@@ -64,7 +64,7 @@ const Collection = () => {
       <section>
         <h1 className={ style.h1 }>Construir referencias</h1>
         
-        <form action="" className="my-14">
+        <form action="" className="my-8 md:my-10">
           <div className="grid lg:grid-cols-custom mb-10 gap-5">
             <div className="flex items-center">
               <label htmlFor="check-day" className={ style.label }>Generación al dia</label>
