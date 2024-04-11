@@ -66,7 +66,7 @@ const Login = () => {
 
         </div>
 
-        <div className="h-full flex flex-col justify-center items-center">
+        <div className="flex flex-col my-auto items-center">
           <h2 className='text-4xl font-bold mb-5'>Iniciar Sesión</h2>
           <form action="" onSubmit={handleSubmit} className='md:w-3/5 w-full px-5'>
             <div className='grid mb-3'>
