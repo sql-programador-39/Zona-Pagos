@@ -26,16 +26,16 @@ const Login = () => {
 
   return (
     <>
-      <section className="h-screen grid md:grid-cols-2">
+      <section className="h-screen grid lg:grid-cols-2">
 
-        <div className="bg-blue-800 text-white h-full md:flex flex-col justify-center hidden">
+        <div className="bg-blue-800 text-white h-full lg:flex flex-col justify-center hidden">
 
           <div className='mx-16'>
             <h1 className='text-6xl font-bold mb-8'>Zona Pagos</h1>
             <p className='text-xl'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea nobis iste odio maiores provident illo corrupti quisquam, repudiandae quia voluptatibus. Expedita excepturi modi doloremque quod voluptatem exercitationem minus, velit distinctio.</p>
           </div>
 
-          <div className="flex gap-5  my-5  mx-16">
+          <div className="flex gap-5 my-5 mx-16">
 
             <div className="w-12 h-12">
               <img src={ img1 } alt="" />
@@ -68,7 +68,7 @@ const Login = () => {
 
         <div className="flex flex-col justify-center items-center">
           <h2 className='text-4xl font-bold mb-5'>Iniciar Sesión</h2>
-          <form action="" onSubmit={handleSubmit} className='md:w-3/5 w-full px-5'>
+          <form action="" onSubmit={handleSubmit} className='lg:w-4/5 w-full px-5 md:px-20'>
             <div className='grid mb-3'>
               <label className={`${style.label} mb-2`} htmlFor="user">Usuario:</label>
               <input className={ style.input } type="email" name="user" id="user" placeholder='Ingrese su usuario' />

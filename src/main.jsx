@@ -5,6 +5,8 @@ import Login from './pages/Login/Login'
 import Config from './pages/Config/Config'
 import Collection from './pages/Collection/Collection'
 import Layout from './Layouts/Layout'
+import ProtectedRoute from './pages/ProtectedRoute/ProtectedRoute'
+import { AuthProvider } from './auth/AuthProvider'
 import './index.css'
 
 
@@ -15,15 +17,21 @@ const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <Layout />,
+    element: <ProtectedRoute />,
     children: [
       {
-        path: '/config',
-        element: <Config />,
-      },
-      {
-        path: '/recaudo',
-        element: <Collection />,
+        path: '/',
+        element: <Layout />,
+        children: [
+          {
+            path: '/config',
+            element: <Config />,
+          },
+          {
+            path: '/recaudo',
+            element: <Collection />,
+          }
+        ]
       }
     ]
   }
@@ -31,6 +39,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 )

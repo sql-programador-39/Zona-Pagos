@@ -1,12 +1,12 @@
 import { useState } from 'react'
-
-import ConfigTable from '../../components/ConfigTable/ConfigTable'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
-import { style } from './styleConfig'
+import ConfigTable from '../../components/ConfigTable/ConfigTable'
 import Alert from '../../components/Alert/Alert'
+
+import { setInfoConfig, setFollowedPaysFilter } from '../../api/api'
+import { style } from './styleConfig'
 
 const Config = () => {
 
@@ -18,9 +18,9 @@ const Config = () => {
   const [dateEnd, setDateEnd] = useState('')
   const [configAlert, setConfigAlert] = useState(false)
   const [filterAlert, setFilterAlert] = useState(false)
+  const [infoTable, setInfoTable] = useState([])
 
   const handleSubmitConfig = (e) => {
-
     e.preventDefault()
 
     if([idCommerce, client, service].includes('')) {
@@ -31,7 +31,7 @@ const Config = () => {
       return
     }
 
-    console.log({ idCommerce, client, service })
+    setInfoConfig({ idCommerce, client, service })
   }
 
   const handleSubmitFilter = (e) => {
@@ -45,12 +45,11 @@ const Config = () => {
       return
     }
     
-    console.log({ typeCollection, dateStart, dateEnd })
+    setInfoTable(setFollowedPaysFilter({ typeCollection, dateStart, dateEnd }))
   }
 
   return (
     <>
-
       <section>
         <h1 className={ style.h1 }>Configuración</h1>
 
@@ -169,12 +168,12 @@ const Config = () => {
           </form>
 
         </div>
-
-
       </section>
 
       <div>
-        <ConfigTable />
+        <ConfigTable 
+          data={ infoTable }
+        />
       </div>
     </>
   )

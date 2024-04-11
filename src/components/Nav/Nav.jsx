@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 import { Dropdown, Space } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPowerOff, faGears, faSackDollar, faX, faBars } from '@fortawesome/free-solid-svg-icons';
@@ -10,8 +11,14 @@ import LogoOpa from '../../assets/Logo-opa.png';
 
 const Nav = () => {
   
+  const { setIsAuthenticaded } = useAuth();
+
   const [hamCollapsed, setHamCollapsed] = useState(false);
   const dropdownRef = useRef();
+
+  const handleSignOutClick = () => {
+    setIsAuthenticaded(false);
+  }
 
   useEffect(() => {
 
@@ -55,7 +62,7 @@ const Nav = () => {
       key: '2',
     },
     {
-      label: <Link to="/" className={ style.iconNav }>
+      label: <Link onClick={ handleSignOutClick } to="/" className={ style.iconNav }>
         <p>Cerrar sesión</p>
         <FontAwesomeIcon icon={ faPowerOff } />   
       </Link>,
