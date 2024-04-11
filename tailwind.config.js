@@ -10,7 +10,7 @@ export default {
         "custom": "1fr 3fr"
       },
       screens: {
-        'gl': '1440px',
+        'gl': '1441px',
       },
       // rounded checkbox
     },

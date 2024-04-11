@@ -103,9 +103,9 @@ const Config = () => {
 
             <button 
               type="submit" 
-              className={`${ style.button } w-3/4 lg:w-full mx-auto lg:m-0 gl:w-1/4` }
+              className={`bg-blue-800 text-white font-bold px-2 py-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline w-3/4 lg:w-full lg:m-0 gl:w-1/4` }
               onClick={handleSubmitConfig}
-            ><FontAwesomeIcon icon={faCircleCheck} /> Aplicar configuración</button>
+            ><FontAwesomeIcon icon={faCircleCheck} /> Aplicar cambios</button>
 
             { configAlert && <Alert msg="Para aplicar la configuración todos los campos deben estar completos" />}
             
