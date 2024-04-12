@@ -1,13 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
+import { Menu } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear, faSackDollar } from '@fortawesome/free-solid-svg-icons';
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined
-} from '@ant-design/icons';
-import { Menu } from 'antd';
-import { Link } from 'react-router-dom';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import './AsideMenu.css';
 
 function getItem(label, key, icon, children, type) {
@@ -48,15 +44,15 @@ const AsideMenu = ({ collapsed, setCollapsed }) => {
       style={{ height: '90vh', position: 'fixed' }}
       className={ collapsed ? 'aside-menu-collapsed' : 'aside-menu' }
     >
-      <div className={`${ collapsed ? 'div-menu-collapse' : 'div-menu' } flex justify-center py-3 text-blue-900 text-2xl border-r`} onClick={toggleCollapsed}>
+      <div className={ `${ collapsed ? 'div-menu-collapse' : 'div-menu' } flex justify-center py-3 text-blue-900 text-2xl border-r` } onClick={ toggleCollapsed }>
         <button>
           { collapsed ? <MenuUnfoldOutlined  /> : <MenuFoldOutlined /> }
         </button>
       </div>
 
       <Menu
-        defaultSelectedKeys={['1']}
-        selectedKeys={[ selectedKey ]}
+        defaultSelectedKeys={ ['1'] }
+        selectedKeys={ [selectedKey] }
         mode="inline"
         inlineCollapsed={ collapsed }
         items={ items }

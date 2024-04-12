@@ -1,0 +1,96 @@
+{
+  "dataConfig": [
+    {
+      "key": "1",
+      "grupo": "Mike",
+      "referencia": "32",
+      "valor": "10 Downing Street",
+      "recaudo": "5000",
+      "reversado": "No",
+      "fecha": "2021-09-21"
+    },
+    {
+      "key": "2",
+      "grupo": "Mike",
+      "referencia": "32",
+      "valor": "10 Downing Street",
+      "recaudo": "5000",
+      "reversado": "No",
+      "fecha": "2021-09-21"
+    },
+    {
+      "key": "3",
+      "grupo": "Mike",
+      "referencia": "32",
+      "valor": "10 Downing Street",
+      "recaudo": "5000",
+      "reversado": "No",
+      "fecha": "2021-09-21"
+    },
+    {
+      "key": "4",
+      "grupo": "Mike",
+      "referencia": "32",
+      "valor": "10 Downing Street",
+      "recaudo": "5000",
+      "reversado": "No",
+      "fecha": "2021-09-21"
+    },
+    {
+      "key": "5",
+      "grupo": "Mike",
+      "referencia": "32",
+      "valor": "10 Downing Street",
+      "recaudo": "5000",
+      "reversado": "No",
+      "fecha": "2021-09-21"
+    }
+  ],
+  "dataCollection": [
+    {
+      "key": "1",
+      "referencia": "Mike",
+      "cedula": "32",
+      "producto": "10 Downing Street",
+      "valor": "5000",
+      "checked": false,
+      "disabled": false
+    },
+    {
+      "key": "2",
+      "referencia": "Mike",
+      "cedula": "32",
+      "producto": "10 Downing Street",
+      "valor": "5000",
+      "checked": false,
+      "disabled": false
+    },
+    {
+      "key": "3",
+      "referencia": "Mike",
+      "cedula": "32",
+      "producto": "10 Downing Street",
+      "valor": "5000",
+      "checked": false,
+      "disabled": false
+    },
+    {
+      "key": "4",
+      "referencia": "Mike",
+      "cedula": "32",
+      "producto": "10 Downing Street",
+      "valor": "5000",
+      "checked": false,
+      "disabled": false
+    },
+    {
+      "key": "5",
+      "referencia": "Mike",
+      "cedula": "32",
+      "producto": "10 Downing Street",
+      "valor": "5000",
+      "checked": false,
+      "disabled": false
+    }
+  ]
+}

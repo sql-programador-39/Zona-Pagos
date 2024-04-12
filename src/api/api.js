@@ -1,173 +1,29 @@
-const dataSource = [
-  {
-    key: '1',
-    grupo: 'Mike',
-    referencia: 32,
-    valor: '10 Downing Street',
-    recaudo: '5000',
-    reversado: 'No',
-    fecha: '2021-09-21',
-  },
-  {
-    key: '2',
-    grupo: 'Mike',
-    referencia: 32,
-    valor: '10 Downing Street',
-    recaudo: '5000',
-    reversado: 'No',
-    fecha: '2021-09-21',
-  },
-  {
-    key: '3',
-    grupo: 'Mike',
-    referencia: 32,
-    valor: '10 Downing Street',
-    recaudo: '5000',
-    reversado: 'No',
-    fecha: '2021-09-21',
-  },
-  {
-    key: '4',
-    grupo: 'Mike',
-    referencia: 32,
-    valor: '10 Downing Street',
-    recaudo: '5000',
-    reversado: 'No',
-    fecha: '2021-09-21',
-  },
-  {
-    key: '5',
-    grupo: 'Mike',
-    referencia: 32,
-    valor: '10 Downing Street',
-    recaudo: '5000',
-    reversado: 'No',
-    fecha: '2021-09-21',
-  }
-];
-
-const dataSource2 = [
-  {
-    key: '1',
-    referencia: 'Mike',
-    cedula: 32,
-    producto: '10 Downing Street',
-    valor: '5000',
-  },
-  {
-    key: '2',
-    referencia: 'Mike',
-    cedula: 32,
-    producto: '10 Downing Street',
-    valor: '5000',
-  },
-  {
-    key: '3',
-    referencia: 'Mike',
-    cedula: 32,
-    producto: '10 Downing Street',
-    valor: '5000',
-  },
-  {
-    key: '4',
-    referencia: 'Mike',
-    cedula: 32,
-    producto: '10 Downing Street',
-    valor: '5000',
-  },
-  {
-    key: '5',
-    referencia: 'Mike',
-    cedula: 32,
-    producto: '10 Downing Street',
-    valor: '5000',
-  },
-  {
-    key: '6',
-    referencia: 'Mike',
-    cedula: 32,
-    producto: '10 Downing Street',
-    valor: '5000'
-  },
-  {
-    key: '7',
-    referencia: 'Mike',
-    cedula: 32,
-    producto: '10 Downing Street',
-    valor: '5000'
-  },
-  {
-    key: '8',
-    referencia: 'Mike',
-    cedula: 32,
-    producto: '10 Downing Street',
-    valor: '5000'
-  },
-  {
-    key: '9',
-    referencia: 'Mike',
-    cedula: 25,
-    producto: '10 Downing Street',
-    valor: '5000'
-  },
-  {
-    key: '10',
-    referencia: 'Mike',
-    cedula: 32,
-    producto: '10 Downing Street',
-    valor: '5000'
-  },
-  {
-    key: '11',
-    referencia: 'Mike',
-    cedula: 32,
-    producto: '10 Downing Street',
-    valor: '5000'
-  },
-  {
-    key: '12',
-    referencia: 'Mike',
-    cedula: 32,
-    producto: '10 Downing Street',
-    valor: '5000'
-  },
-  {
-    key: '13',
-    referencia: 'Mike',
-    cedula: 32,
-    producto: '10 Downing Street',
-    valor: '5000'
-  },
-  {
-    key: '14',
-    referencia: 'Mike',
-    cedula: 32,
-    producto: '10 Downing Street',
-    valor: '5000'
-  },
-  {
-    key: '15',
-    referencia: 'Mike',
-    cedula: 31,
-    producto: '10 Downing Street',
-    valor: '5000'
-  }
-];
+import axios from 'axios';
 
 const setInfoConfig = (config) => {
   console.log(config);
 }
 
-const setFollowedPaysFilter = (filter) => {
-  console.log(filter);
+const setFollowedPaysFilter = async (filter) => {
+  const url = `http://localhost:5000/dataConfig`;
 
-  return dataSource;
+  try {
+    const response = await axios(url);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-const getInfoCollections = (date) => {
-  console.log(date);
+const getInfoCollections = async (date) => {
+  const url = `http://localhost:5000/dataCollection`;
 
-  return dataSource2;
+  try {
+    const response = await axios(url);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 const sendInfoProcessed = (info) => {

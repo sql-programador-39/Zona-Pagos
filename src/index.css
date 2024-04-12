@@ -36,3 +36,26 @@ body {
 .ant-switch-checked {
   background: #1e40af !important;
 }
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #1e40af;
+  width: 20px;
+  height: 20px;
+}
+
+.ant-checkbox-wrapper:not(.ant-checkbox-wrapper-disabled):hover .ant-checkbox-checked:not(.ant-checkbox-disabled) .ant-checkbox-inner{
+  background-color: #315ed8;
+}
+
+.ant-checkbox-wrapper:not(.ant-checkbox-wrapper-disabled):hover .ant-checkbox-inner, :where(.css-dev-only-do-not-override-1kuana8).ant-checkbox:not(.ant-checkbox-disabled):hover .ant-checkbox-inner {
+  border-color: #315ed8;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner:after {
+  transform: rotate(45deg) scale(1) translate(-50%, -60%);
+}
+
+.ant-checkbox .ant-checkbox-inner {
+  border-radius: 50%;
+}
+

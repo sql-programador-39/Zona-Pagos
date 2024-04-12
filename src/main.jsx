@@ -9,7 +9,6 @@ import ProtectedRoute from './pages/ProtectedRoute/ProtectedRoute'
 import { AuthProvider } from './auth/AuthProvider'
 import './index.css'
 
-
 const router = createBrowserRouter([
   {
     path: '/',

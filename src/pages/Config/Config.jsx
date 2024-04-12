@@ -34,7 +34,7 @@ const Config = () => {
     setInfoConfig({ idCommerce, client, service })
   }
 
-  const handleSubmitFilter = (e) => {
+  const handleSubmitFilter = async (e) => {
     e.preventDefault()
 
     if([typeCollection, dateStart, dateEnd].includes('')) {
@@ -44,8 +44,9 @@ const Config = () => {
       }, 4000)
       return
     }
-    
-    setInfoTable(setFollowedPaysFilter({ typeCollection, dateStart, dateEnd }))
+
+    const data = await setFollowedPaysFilter({ typeCollection, dateStart, dateEnd })
+    setInfoTable(data)
   }
 
   return (
@@ -55,7 +56,7 @@ const Config = () => {
 
         <div className="my-8 md:my-10">
           <form action="" className='grid lg:grid-cols-2 gap-5 grid-cols-1'>
-            <div className='grid sm:grid-cols-custom grid-cols-1 items-center'>
+            <div className={ `${ style.divInputConfig }` }>
               <label htmlFor="id-commerce" className={ style.label }>IdComercio:</label>
               <input 
                 type="number" 
@@ -70,7 +71,7 @@ const Config = () => {
               />
             </div>
 
-            <div className='grid sm:grid-cols-custom grid-cols-1 items-center'>
+            <div className={ `${ style.divInputConfig }` }>
               <label htmlFor="client" className={ style.label }>Cliente:</label>
               <input 
                 type="text" 
@@ -85,11 +86,11 @@ const Config = () => {
               />
             </div>
 
-            <div className='grid sm:grid-cols-custom grid-cols-1 items-center'>
+            <div className={ `${ style.divInputConfig }` }>
               <label htmlFor="service" className={ style.label }>Servicio:</label>
               <input 
                 type="text" 
-                className={` ${style.input} mt-3 sm:m-0 `} 
+                className={` ${ style.input } mt-3 sm:m-0 `} 
                 name='service' 
                 id='service'
                 placeholder='Nombre del servicio'
@@ -102,9 +103,9 @@ const Config = () => {
 
             <button 
               type="submit" 
-              className={`bg-blue-800 text-white font-bold px-2 py-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline w-3/4 lg:w-full lg:m-0 gl:w-1/4` }
-              onClick={handleSubmitConfig}
-            ><FontAwesomeIcon icon={faCircleCheck} /> Aplicar cambios</button>
+              className={` ${ style.button } mx-auto w-3/4 lg:w-full lg:m-0 gl:w-1/4` }
+              onClick={ handleSubmitConfig }
+            ><FontAwesomeIcon icon={ faCircleCheck } /> Aplicar cambios</button>
 
             { configAlert && <Alert msg="Para aplicar la configuración todos los campos deben estar completos" />}
             
@@ -117,7 +118,7 @@ const Config = () => {
 
         <div className="mb-10">
           <form action="" className="grid gl:grid-cols-2 gap-5 grid-cols-1">
-            <div className="grid lg:grid-cols-custom grid-cols-1 items-center">
+            <div className={ `${ style.divInputConfig }` }>
               <label htmlFor="select-collection" className="font-bold text-xl">Tipo Recaudo</label>
               <select 
                 name="select-collection" 
@@ -134,7 +135,7 @@ const Config = () => {
               </select>
             </div>
 
-            <div className="grid lg:grid-cols-custom grid-cols-1 items-center">
+            <div className={ `${ style.divInputConfig }` }>
               <label htmlFor="start-date" className="font-bold text-xl">Filtrar por fechas</label>
 
               <div className="grid lg:grid-cols-3 grid-cols-2 gap-5 mt-3 lg:m-0">
@@ -154,13 +155,20 @@ const Config = () => {
                     setDateEnd(e.target.value)
                   }}
                 />
+
                 <button 
-                  type="submit" 
-                  className={ `${style.button} col-span-2 lg:col-span-1 w-3/4 mx-auto lg:m-0 lg:w-full` }
-                  onClick={handleSubmitFilter}
-                  ><FontAwesomeIcon icon={faCircleCheck} /> Aplicar filtros</button>
+                type="submit" 
+                className={ `${style.button} col-span-2 lg:col-span-1 w-3/4 mx-auto lg:m-0 lg:w-full hidden lg:grid` }
+                onClick={handleSubmitFilter}
+                ><FontAwesomeIcon icon={faCircleCheck} /> Aplicar filtros</button>
 
               </div>
+
+              <button 
+                type="submit" 
+                className={ `${style.button} col-span-2 lg:col-span-1 w-3/4 mx-auto lg:m-0 lg:w-full lg:hidden` }
+                onClick={handleSubmitFilter}
+                ><FontAwesomeIcon icon={faCircleCheck} /> Aplicar filtros</button>
 
             </div>
             
