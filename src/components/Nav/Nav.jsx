@@ -89,7 +89,7 @@ const Nav = () => {
               <Space>
                 OPA S.A.S
                 <div className='flex items-center'>
-                  { hamCollapsed ? <FontAwesomeIcon className='w-6 h-6' icon={ faX } /> : <FontAwesomeIcon className='w-6 h-6' icon={ faBars } /> }
+                  { hamCollapsed ? <FontAwesomeIcon className='w-7 h-6' icon={ faX } /> : <FontAwesomeIcon className='w-7 h-7' icon={ faBars } /> }
                 </div>
               </Space>
             </div>

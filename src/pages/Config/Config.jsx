@@ -135,7 +135,7 @@ const Config = () => {
               </select>
             </div>
 
-            <div className={ `${ style.divInputConfig }` }>
+            <div className={ `${ style.divInputConfig2 }` }>
               <label htmlFor="start-date" className="font-bold text-xl">Filtrar por fechas</label>
 
               <div className="grid lg:grid-cols-3 grid-cols-2 gap-5 mt-3 lg:m-0">
@@ -158,17 +158,22 @@ const Config = () => {
 
                 <button 
                 type="submit" 
-                className={ `${style.button} col-span-2 lg:col-span-1 w-3/4 mx-auto lg:m-0 lg:w-full hidden lg:grid` }
+                className={ `${style.button} col-span-2 lg:col-span-1 w-3/4 mx-auto lg:m-0 lg:w-full hidden lg:inline` }
                 onClick={handleSubmitFilter}
                 ><FontAwesomeIcon icon={faCircleCheck} /> Aplicar filtros</button>
 
               </div>
 
-              <button 
-                type="submit" 
-                className={ `${style.button} col-span-2 lg:col-span-1 w-3/4 mx-auto lg:m-0 lg:w-full lg:hidden` }
-                onClick={handleSubmitFilter}
-                ><FontAwesomeIcon icon={faCircleCheck} /> Aplicar filtros</button>
+              <div className='mt-3 w-3/4 mx-auto lg:hidden'>
+                <button 
+                  type="submit" 
+                  className={ `${style.button} col-span-2 lg:col-span-1 lg:m-0 w-full` }
+                  onClick={handleSubmitFilter}
+                >
+                  <FontAwesomeIcon icon={faCircleCheck} /> Aplicar filtros
+                </button>
+              </div>
+
 
             </div>
             

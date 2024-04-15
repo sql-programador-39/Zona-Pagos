@@ -23,27 +23,30 @@ const Collection = () => {
   const [buttonProcess, setButtonProcess] = useState(false)
   const [infoTable, setInfoTable] = useState([])
   const [checkboxDisabled, setCheckboxDisabled] = useState(false)
-  const [alert, setAlert] = useState(false)
+  const [alert, setAlert] = useState("")
   const today = new Date()
 
   useEffect(() => {
 
-    setDate(today.toISOString().split('T')[0])
-
-    if(date < today.toISOString().split('T')[0]) {
-      localStorage.removeItem("infoGenerate")
-      return
-    }
+    const infoGenerate = JSON.parse(sessionStorage.getItem("infoGenerate"))
     
-    const infoGenerate = JSON.parse(localStorage.getItem("infoGenerate"))
-
     if(infoGenerate) {
+      console.log(infoGenerate);
       setDate(infoGenerate)
       setButtonGenerate(true)
-      setInfoTable(getInfoCollections(date))
+      console.log(date);
+      getData()
+      return
     }
 
+    setDate(today.toISOString().split('T')[0])
+
   }, [])
+
+  const getData = async () => {
+    const data = await getInfoCollections(date)
+    setInfoTable(data)
+  }
 
   const handleButtons = (state) => {
     if(state === "") {
@@ -72,27 +75,33 @@ const Collection = () => {
       setDate(today.toISOString().split('T')[0])
     }
   }
-
-  const handleChangeDate = (e) => {
-    setDate(e.target.value)
-    
-    console.log(date);
-    console.log(e.target.value);
-  }
   
   const handleClickedGenerate = async () => {
     
     if(date < today.toISOString().split('T')[0]) {
-      setAlert(true)
+      setAlert("La fecha no puede ser menor a la actual")
 
       setTimeout(() => {
-        setAlert(false)
+        setAlert("")
+      }, 4000)
+
+      return
+    }
+
+    const monthDate = date.split('-')[1]
+    const monthCompare = today.toISOString().split('T')[0].split('-')[1]
+
+    if(monthDate !== monthCompare) {
+      setAlert("La fecha no puede ser de un mes mayor o menor al mes actual")
+
+      setTimeout(() => {
+        setAlert("")
       }, 4000)
 
       return
     }
     
-    localStorage.setItem("infoGenerate", JSON.stringify(date))
+    sessionStorage.setItem("infoGenerate", JSON.stringify(date))
 
     const data = await getInfoCollections(date)
 
@@ -117,7 +126,7 @@ const Collection = () => {
     
     handleButtons("process")
     setInfoTable([])
-    localStorage.removeItem("infoGenerate")
+    sessionStorage.removeItem("infoGenerate")
   }
 
   return (
@@ -130,18 +139,24 @@ const Collection = () => {
           <div className="grid lg:grid-cols-custom mb-10 gap-5">
             <div className="flex items-center">
               <label htmlFor="check-day" className={ style.label }>Generación al dia</label>
-              <Checkbox  name="check-day" id="check-day" className="ms-3" checked={checkbox === "Generacion al dia"} value="Generacion al dia" onChange={ handleChangeCheckbox } />
+              <Checkbox  name="check-day" id="check-day" className="ms-3" checked={ checkbox === "Generacion al dia" } value="Generacion al dia" onChange={ handleChangeCheckbox } />
             </div>
 
             <div className="flex items-center">
               <label htmlFor="check-proyec" className={ style.label }>Generación con proyección</label>
-              <Checkbox name="check-proyec" id="check-proyec" className="checkbox-round  ms-3" checked={ checkbox === "Generacion con proyeccion" } value="Generacion con proyeccion" onChange={ handleChangeCheckbox } />
+              <Checkbox name="check-proyec" id="check-proyec" className="ms-3" checked={ checkbox === "Generacion con proyeccion" } value="Generacion con proyeccion" onChange={ handleChangeCheckbox } />
             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-custom my-5 gap-5">
             
-            <input value={date} type="date" className={ style.input } onChange={ handleChangeDate } disabled={ checkbox === "Generacion al dia" }/>
+            <input 
+              value={date} 
+              type="date" 
+              className={ style.input }
+              disabled={ checkbox === "Generacion al dia" }
+              onChange={ e => setDate(e.target.value) }
+            />
             
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               <button 
@@ -170,7 +185,7 @@ const Collection = () => {
         </form>
 
         <div>
-          { alert && <Alert msg="La fecha no puede ser menor a la actual" /> }
+          { alert.length !== 0 && <Alert msg={alert} /> }
         </div>
 
       </section>

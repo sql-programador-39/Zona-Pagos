@@ -12,23 +12,6 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-.checkbox-round {
-  width: 1.3em;
-  height: 1.3em;
-  background-color: white;
-  border-radius: 50%;
-  vertical-align: middle;
-  border: 2px solid #9e9e9e;
-  appearance: none;
-  -webkit-appearance: none;
-  outline: none;
-  cursor: pointer;
-}
-
-.checkbox-round:checked {
-  background-color: #1e40af;
-}
-
 .ant-switch {
   background: #9e9e9e !important;
 }
@@ -59,3 +42,6 @@ body {
   border-radius: 50%;
 }
 
+.ant-space-gap-col-small {
+  column-gap: 16px;
+}
