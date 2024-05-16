@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { Menu } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear, faSackDollar } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faSackDollar, faMagnifyingGlassChart } from '@fortawesome/free-solid-svg-icons';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import './AsideMenu.css';
 
@@ -25,8 +25,10 @@ const AsideMenu = ({ collapsed, setCollapsed }) => {
   useEffect(() => {
     if (location.pathname === '/config') {
       setSelectedKey('1');
-    } else if (location.pathname === '/recaudo') {
+    } else if(location.pathname === '/seguimiento'){
       setSelectedKey('2');
+    } else if (location.pathname === '/recaudo') {
+      setSelectedKey('3');
     }
   }, [location]);
 
@@ -36,7 +38,8 @@ const AsideMenu = ({ collapsed, setCollapsed }) => {
 
   const items = [
     getItem(<Link to="/config">Configuración</Link>, '1', <FontAwesomeIcon icon={ faGear } />),
-    getItem(<Link to="/recaudo">Recuado</Link>, '2', <FontAwesomeIcon icon={ faSackDollar } />),
+    getItem(<Link to="/seguimiento">Seguimiento</Link>, '2', <FontAwesomeIcon icon={ faMagnifyingGlassChart } />),
+    getItem(<Link to="/recaudo">Recuado</Link>, '3', <FontAwesomeIcon icon={ faSackDollar } />),
   ];
 
   return (

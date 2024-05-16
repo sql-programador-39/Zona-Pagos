@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import { Checkbox } from "antd"
 import { getInfoCollections } from "../../api/api"
 
+import useConfig from "../../hooks/useConfig"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { 
   faFileCircleCheck,
@@ -27,46 +29,8 @@ const Collection = () => {
   const today = new Date()
 
   useEffect(() => {
-
-    const infoGenerate = JSON.parse(sessionStorage.getItem("infoGenerate"))
-    
-    if(infoGenerate) {
-      console.log(infoGenerate);
-      setDate(infoGenerate)
-      setButtonGenerate(true)
-      console.log(date);
-      getData()
-      return
-    }
-
     setDate(today.toISOString().split('T')[0])
-
   }, [])
-
-  const getData = async () => {
-    const data = await getInfoCollections(date)
-    setInfoTable(data)
-  }
-
-  const handleButtons = (state) => {
-    if(state === "") {
-      setButtonGenerate(true)
-      setButtonComunication(false)
-      setButtonProcess(false)
-    } else if(state === "generate") {
-      setButtonGenerate(true)
-      setButtonComunication(true)
-      setButtonProcess(true)
-    } else if(state === "comunication") {
-      setButtonGenerate(false)
-      setButtonComunication(true)
-      setButtonProcess(true)
-    } else if(state === "process") {
-      setButtonGenerate(true)
-      setButtonComunication(false)
-      setButtonProcess(false)
-    }
-  }
 
   const handleChangeCheckbox = (e) => {
     setCheckbox(e.target.value);
@@ -100,33 +64,18 @@ const Collection = () => {
 
       return
     }
-    
-    sessionStorage.setItem("infoGenerate", JSON.stringify(date))
 
     const data = await getInfoCollections(date)
 
     setInfoTable(data)
-    handleButtons("generate")
-  }
-
-  const handleClickedComunication = () => {
-    console.log("Comunicación");
-
-    setInfoTable(infoTable.map((item) => {
-      item.disabled = true
-      return item
-    }))
-
-    handleButtons("comunication")
+    setButtonProcess(true)
   }
 
   const handleClickedProcess = () => {
     console.log(infoTable);
 
-    
-    handleButtons("process")
     setInfoTable([])
-    sessionStorage.removeItem("infoGenerate")
+    setButtonProcess(false)
   }
 
   return (
@@ -144,7 +93,7 @@ const Collection = () => {
 
             <div className="flex items-center">
               <label htmlFor="check-proyec" className={ style.label }>Generación con proyección</label>
-              <Checkbox name="check-proyec" id="check-proyec" className="ms-3" checked={ checkbox === "Generacion con proyeccion" } value="Generacion con proyeccion" onChange={ handleChangeCheckbox } />
+              <Checkbox name="check-proyec" disabled={true} id="check-proyec" className="ms-3" checked={ checkbox === "Generacion con proyeccion" } value="Generacion con proyeccion" onChange={ handleChangeCheckbox } />
             </div>
           </div>
 
@@ -162,15 +111,14 @@ const Collection = () => {
               <button 
                 type="button" 
                 className={ buttonGenerate ? `${ style.button } xl:w-3/4 w-full` : `${ style.buttonDisabled } xl:w-3/4 w-full` }
-                disabled={ !buttonGenerate }
+                /* disabled={ !buttonGenerate } */
                 onClick={ handleClickedGenerate }
               ><FontAwesomeIcon icon={ faFileCircleCheck } /> Generar</button>
 
               <button 
                 type="button"
                 className={ buttonComunication ? `${ style.button } xl:w-3/4 w-full` : `${ style.buttonDisabled } xl:w-3/4 w-full` }
-                disabled={ !buttonComunication }
-                onClick={ handleClickedComunication }
+                disabled={ true }
               ><FontAwesomeIcon icon={ faEnvelopeCircleCheck } /> Comunicación</button>
 
               <button 

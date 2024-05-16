@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Dropdown, Space } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPowerOff, faGears, faSackDollar, faX, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faPowerOff, faGears, faSackDollar, faX, faBars, faMagnifyingGlassChart } from '@fortawesome/free-solid-svg-icons';
 
 import useAuth from '../../hooks/useAuth';
 import { style } from './styleNav';
@@ -57,18 +57,25 @@ const Nav = () => {
       key: '1',
     },
     {
+      label: <Link to="/seguimiento" className={ style.iconNav }>
+        <p>Seguimiento</p>
+        <FontAwesomeIcon icon={ faMagnifyingGlassChart } />
+      </Link>,
+      key: '2',
+    },
+    {
       label: <Link to="/" className={ style.iconNav }>
         <p>Perfil</p>
         <img src={ user } alt="" width={ "14px" } height={ "14px" } />
       </Link>,
-      key: '2',
+      key: '3',
     },
     {
       label: <Link onClick={ handleSignOutClick } to="/" className={ style.iconNav }>
         <p>Cerrar sesión</p>
         <FontAwesomeIcon icon={ faPowerOff } />   
       </Link>,
-      key: '3',
+      key: '4',
     },
   ];
 

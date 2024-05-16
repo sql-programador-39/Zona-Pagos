@@ -45,7 +45,6 @@ const CollectionTable = ({ data, setInfoTable }) => {
               key={ row }
               checked={rowIndex.checked}
               onChange={ () => handleCheckboxOne(rowIndex, 'checkbox') }
-              disabled={ rowIndex.disabled }
             />
           </>
         )
@@ -63,27 +62,11 @@ const CollectionTable = ({ data, setInfoTable }) => {
     setInfoTable([...data])
   }
 
-  const handleClick = () => {
-
-    const dataFiltered = data.filter((item) => {
-      return !item.checked;
-    });
-
-    setInfoTable(dataFiltered)
-  }
-
   return (
     <>
       <Table locale={{ emptyText: (<Empty image={ Empty.PRESENTED_IMAGE_DEFAULT } description={ false }>
         <p>No se encontraron registros</p>
-      </Empty>) }} dataSource={ data } columns={ columns } pagination={{ pageSize: 5 }} />  
-        
-      <div className="flex justify-end mt-5">
-        <button 
-          className={`${ style.button } w-1/2 sm:w-1/4`}
-          onClick={ handleClick }
-        ><FontAwesomeIcon icon={ faClipboardCheck } /> Actualizar</button>
-      </div>
+      </Empty>) }} dataSource={ data } columns={ columns } pagination={{ pageSize: 5 }} rowKey={(record) => record.cedula} />  
     </>
   )
 }

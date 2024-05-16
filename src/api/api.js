@@ -1,9 +1,5 @@
 import axios from 'axios';
 
-const setInfoConfig = (config) => {
-  console.log(config);
-}
-
 const setFollowedPaysFilter = async (filter) => {
   const url = `http://localhost:5000/dataConfig`;
 
@@ -31,7 +27,6 @@ const sendInfoProcessed = (info) => {
 }
 
 export {
-  setInfoConfig,
   setFollowedPaysFilter,
   getInfoCollections,
   sendInfoProcessed

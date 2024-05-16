@@ -1,45 +1,80 @@
 {
   "dataConfig": [
     {
-      "key": "1",
       "grupo": "Mike",
-      "referencia": "32",
+      "referencia": "1",
       "valor": "10 Downing Street",
       "recaudo": "5000",
       "reversado": "No",
       "fecha": "2021-09-21"
     },
     {
-      "key": "2",
       "grupo": "Mike",
-      "referencia": "32",
+      "referencia": "2",
       "valor": "10 Downing Street",
       "recaudo": "5000",
       "reversado": "No",
       "fecha": "2021-09-21"
     },
     {
-      "key": "3",
       "grupo": "Mike",
-      "referencia": "32",
+      "referencia": "3",
       "valor": "10 Downing Street",
       "recaudo": "5000",
       "reversado": "No",
       "fecha": "2021-09-21"
     },
     {
-      "key": "4",
       "grupo": "Mike",
-      "referencia": "32",
+      "referencia": "4",
       "valor": "10 Downing Street",
       "recaudo": "5000",
       "reversado": "No",
       "fecha": "2021-09-21"
     },
     {
-      "key": "5",
       "grupo": "Mike",
-      "referencia": "32",
+      "referencia": "5",
+      "valor": "10 Downing Street",
+      "recaudo": "5000",
+      "reversado": "No",
+      "fecha": "2021-09-21"
+    },
+    {
+      "grupo": "Mike",
+      "referencia": "6",
+      "valor": "10 Downing Street",
+      "recaudo": "5000",
+      "reversado": "No",
+      "fecha": "2021-09-21"
+    }, 
+    {
+      "grupo": "Mike",
+      "referencia": "7",
+      "valor": "10 Downing Street",
+      "recaudo": "5000",
+      "reversado": "No",
+      "fecha": "2021-09-21"
+    },
+    {
+      "grupo": "Mike",
+      "referencia": "8",
+      "valor": "10 Downing Street",
+      "recaudo": "5000",
+      "reversado": "No",
+      "fecha": "2021-09-21"
+    },
+    {
+      "grupo": "Mike",
+      "referencia": "9",
+      "valor": "10 Downing Street",
+      "recaudo": "5000",
+      "reversado": "No",
+      "fecha": "2021-09-21"
+    },
+    {
+      "grupo": "Mike",
+      "referencia": "10",
       "valor": "10 Downing Street",
       "recaudo": "5000",
       "reversado": "No",
@@ -48,49 +83,75 @@
   ],
   "dataCollection": [
     {
-      "key": "1",
-      "referencia": "Mike",
-      "cedula": "32",
-      "producto": "10 Downing Street",
-      "valor": "5000",
-      "checked": false,
-      "disabled": false
+      "referencia": "1",
+      "cedula": 1,
+      "grupo": "John Brown sr.",
+      "valor": 60,
+      "producto": "New York No. 1 Lake Park",
+      "children": [
+        {
+          "referencia": "1",
+          "cedula": 11,
+          "recaudo": "John Brown",
+          "valor": 42,
+          "producto": "New York No. 2 Lake Park"
+        },
+        {
+          "referencia": "1",
+          "cedula": 12,
+          "recaudo": "John Brown jr.",
+          "valor": 30,
+          "producto": "New York No. 3 Lake Park",
+          "children": [
+            {
+              "referencia": "1",
+              "cedula": 121,
+              "recaudo": "Jimmy Brown",
+              "valor": 16,
+              "producto": "New York No. 3 Lake Park"
+            }
+          ]
+        },
+        {
+          "referencia": "1",
+          "cedula": 13,
+          "recaudo": "Jim Green sr.",
+          "valor": 72,
+          "producto": "London No. 1 Lake Park",
+          "children": [
+            {
+              "referencia": "1",
+              "cedula": 131,
+              "recaudo": "Jim Green",
+              "valor": 42,
+              "producto": "London No. 2 Lake Park",
+              "children": [
+                {
+                  "referencia": "1",
+                  "cedula": 1311,
+                  "recaudo": "Jim Green jr.",
+                  "valor": 25,
+                  "producto": "London No. 3 Lake Park"
+                },
+                {
+                  "referencia": "1",
+                  "cedula": 1312,
+                  "recaudo": "Jimmy Green sr.",
+                  "valor": 18,
+                  "producto": "London No. 4 Lake Park"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
-      "key": "2",
-      "referencia": "Mike",
-      "cedula": "32",
-      "producto": "10 Downing Street",
-      "valor": "5000",
-      "checked": false,
-      "disabled": false
-    },
-    {
-      "key": "3",
-      "referencia": "Mike",
-      "cedula": "32",
-      "producto": "10 Downing Street",
-      "valor": "5000",
-      "checked": false,
-      "disabled": false
-    },
-    {
-      "key": "4",
-      "referencia": "Mike",
-      "cedula": "32",
-      "producto": "10 Downing Street",
-      "valor": "5000",
-      "checked": false,
-      "disabled": false
-    },
-    {
-      "key": "5",
-      "referencia": "Mike",
-      "cedula": "32",
-      "producto": "10 Downing Street",
-      "valor": "5000",
-      "checked": false,
-      "disabled": false
+      "referencia": "1",
+      "cedula": 2,
+      "recaudo": "Joe Black",
+      "valor": 32,
+      "producto": "Sydney No. 1 Lake Park"
     }
   ]
 }
