@@ -10,6 +10,7 @@ import { AuthProvider } from './auth/AuthProvider'
 import { ConfigProvider } from './context/ConfigProvider'
 import './index.css'
 import Monitoring from './pages/Monitoring/Monitoring'
+import Pruebas from './components/Pruebas'
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
           {
             path: '/recaudo',
             element: <Collection />,
+          },
+          {
+            path: '/pruebas',
+            element: <Pruebas />,
           }
         ]
       }

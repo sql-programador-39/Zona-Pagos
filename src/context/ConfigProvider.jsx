@@ -15,6 +15,11 @@ const ConfigProvider = ({children}) => {
   const [paymentReferences, setPaymentReferences] = useState({})
   const [paymentPlaceId, setPaymentPlaceId] = useState("")
   const [provider, setProvider] = useState(0)
+  const [loading, setLoading] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
+  const [text, setText] = useState('')
+  const [type, setType] = useState('')
 
   const getConfig = async () => {
 
@@ -42,8 +47,20 @@ const ConfigProvider = ({children}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    
 
+    /* setLoading(true)
+    
+    setTimeout(() => {
+      setLoading(false)
+
+      setShowAlert(true)
+      setTimeout(() => {
+        console.log('Submit')
+        setIsModalOpen(false)
+        setShowAlert(false)
+      }, 3000)
+    }, 5000) */
+    
     const updatedObject = {
       "commerceId": commerceId,
       "bankId": bankId,
@@ -54,10 +71,13 @@ const ConfigProvider = ({children}) => {
 
     const escaped = escapeJsonString(updatedObject)
     sendInfo(escaped)
+
   }
 
   const sendInfo = async (escaped) => {
     const url = 'http://localhost:9090/api/ZOpaOperations/ActualizarConfiguracionGeneral'
+
+    setLoading(true)
 
     try {
       const response = await axios.post(url, { 
@@ -74,9 +94,32 @@ const ConfigProvider = ({children}) => {
         ] 
       }
     )
-      console.log(response)
+      setLoading(false)
+      setText('Datos actualizados!')
+      setType('success')
+      setShowAlert(true)
+      setTimeout(() => {
+        setShowAlert(false)
+        setText('')
+        setType('')
+        setIsModalOpen(false)
+      }, 3000)
     } catch (error) {
-      console.log(error)
+      
+      if(error.response.status === 404) {
+        console.log('Error 404')
+      }
+
+      setLoading(false)
+      setShowAlert(true)
+      setText('Error al actualizar los datos, pro favor intentelo más tarde.')
+      setType('error')
+      setTimeout(() => {
+        setShowAlert(false)
+        setText('')
+        setType('')
+        setIsModalOpen(false)
+      }, 3000)
     }
   }
 
@@ -112,7 +155,14 @@ const ConfigProvider = ({children}) => {
       setSearchReferences,
       setPaymentReferences,
       setPaymentPlaceId,
-      setProvider
+      setProvider,
+      loading,
+      setLoading,
+      isModalOpen,
+      setIsModalOpen,
+      showAlert,
+      type,
+      text,
     }}>
       {children}
     </ConfigContext.Provider>

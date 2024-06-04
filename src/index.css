@@ -45,3 +45,29 @@ body {
 .ant-space-gap-col-small {
   column-gap: 16px;
 }
+
+.ant-modal-header {
+  border-bottom: 1px solid #e0e0e0 !important;
+  padding-bottom: 10px !important;
+}
+
+.ant-modal-header .ant-modal-title {
+  font-size: 24px !important;
+  font-weight: 600 !important;
+}
+
+.ant-modal .ant-modal-close {
+  top: 15px
+}
+
+.ant-space-item:first-child {
+  width: 110px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.drop-custom {
+  border: 1px solid #e0e0e0;
+  padding: 5px 10px;
+  border-radius: 10px;
+}

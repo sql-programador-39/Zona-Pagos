@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react"
 import { Checkbox } from "antd"
-import { getInfoCollections } from "../../api/api"
-
-import useConfig from "../../hooks/useConfig"
+import { getInfoCollections, sendInfoProcessed } from "../../api/api"
+import { convertCurrencyToNumber } from "../../helpers/formatters"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { 
@@ -15,6 +14,7 @@ import Alert from "../../components/Alert/Alert"
 import CollectionTable from "../../components/CollectionTable/CollectionTable"
 
 import { style } from "../Config/styleConfig"
+import LoadModal from "../../components/LoadModal/LoadModal"
 
 const Collection = () => {
 
@@ -24,9 +24,10 @@ const Collection = () => {
   const [buttonComunication, setButtonComunication] = useState(false)
   const [buttonProcess, setButtonProcess] = useState(false)
   const [infoTable, setInfoTable] = useState([])
-  const [checkboxDisabled, setCheckboxDisabled] = useState(false)
+  const [expandedRowKeys, setExpandedRowKeys] = useState([]);
   const [alert, setAlert] = useState("")
   const today = new Date()
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
     setDate(today.toISOString().split('T')[0])
@@ -65,22 +66,62 @@ const Collection = () => {
       return
     }
 
+    setIsModalOpen(true)
     const data = await getInfoCollections(date)
+    
+    setIsModalOpen(false)
+    const dataWithKeys = data.map((item, index) => ({ ...item, key: index.toString() }));
 
-    setInfoTable(data)
+    setInfoTable(dataWithKeys)
     setButtonProcess(true)
   }
 
-  const handleClickedProcess = () => {
-    console.log(infoTable);
+  const handleClickedProcess = async () => {
+    // Filtrar los elementos que tienen al menos un item2 con checked igual a false
+    const filteredItems = infoTable.filter(item => 
+      item.originalCompanyReference.some(item2 => item2.checked)
+    );
 
-    setInfoTable([])
-    setButtonProcess(false)
-  }
+    let objSend = {};
+  
+    // Iterar sobre los elementos filtrados
+    filteredItems.map(item => {
+      objSend = {
+        "companyReferenceId": item.referencia,
+        "clientId": item.cedula,
+        "productReferences": []
+      };
+
+      item.originalCompanyReference.map(item2 => {
+        let obj2 = {}
+
+        if (!item2.checked) {
+          if (item.referencia === item2.idReferenciaCompany) {
+            const objDelete = {
+              "productReferenceId": item2.referenciaProducto,
+              "clientId": (item2.cedula).toString(),
+              "productCode": item2.codigoProducto,
+              "subProductCode": item2.subCodigoProducto,
+              "productId": item2.idProducto,
+              "dueValue": convertCurrencyToNumber(item2.valor)
+            };
+  
+            obj2 = objDelete;
+          }
+
+          objSend.productReferences.push(obj2);
+        }
+      });
+
+      sendInfoProcessed(objSend);
+      setInfoTable([]);
+      setExpandedRowKeys([]);
+      setButtonProcess(false);
+    });
+  };  
 
   return (
     <>
-
       <section>
         <h1 className={ style.h1 }>Construir referencias</h1>
         
@@ -146,9 +187,12 @@ const Collection = () => {
           <CollectionTable 
             data={ infoTable }
             setInfoTable={ setInfoTable }
-            comunication={ checkboxDisabled }
+            expandedRowKeys={ expandedRowKeys }
+            setExpandedRowKeys={ setExpandedRowKeys }
           />
         </div>
+        
+        { isModalOpen && <LoadModal isModalOpen={ isModalOpen } /> }
 
       </section>
     </>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import useConfig from '../../hooks/useConfig'
 import { Switch } from 'antd'
+import ModalConfirm from '../../components/ModalConfirm/ModalConfirm'
 
 import { style } from './styleConfig'
 
@@ -8,7 +9,6 @@ const Config = () => {
 
   const {
     getConfig,
-    handleSubmit,
     clientId,
     clientName,
     companyId,
@@ -45,16 +45,16 @@ const Config = () => {
     <>
       <section>
 
-        <div className='flex justify-between'>
+        <div className=''>
           <h1 className={ style.h1 }>Configuración</h1>
           
-          <div className='flex items-center gap-3'>
-            <p className={ style.h1 }>Activar Edición</p>
-            <Switch value={checked} onChange={onChange} />
+          <div className='flex items-center gap-3 mt-5'>
+            <p className="font-bold text-2xl">Habilitar Edición</p>
+            <Switch value={ checked } onChange={ onChange } />
           </div>
         </div>
 
-        <form action="" onSubmit={handleSubmit}>
+        <form action="">
           <div className="my-3 md:my-5">
 
 
@@ -63,12 +63,12 @@ const Config = () => {
                 <label htmlFor='companyId' className='font-medium text-lg'>ID de la compañia (CompanyId):</label>
                 <input 
                   type="text"
-                  value={companyId}
+                  value={ companyId }
                   id='companyId'
                   name='companyId' 
-                  className='bg-blue-100 w-full mt-2 ps-2 py-2 rounded-lg outline-blue-700' 
-                  onChange={(e) => setCompanyId(e.target.value)}
-                  disabled={!checked}
+                  className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                  onChange={ (e) => setCompanyId(e.target.value) }
+                  disabled={ !checked }
                 />
               </div>
 
@@ -79,9 +79,9 @@ const Config = () => {
                   value={clientId}
                   id='clientId'
                   name='clientId'
-                  className='bg-blue-100 w-full mt-2 ps-2 py-2 rounded-lg outline-blue-700'
-                  onChange={(e) => setClientId(e.target.value)}
-                  disabled={!checked}
+                  className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                  onChange={ (e) => setClientId(e.target.value) }
+                  disabled={ !checked }
                 />
               </div>
 
@@ -89,21 +89,21 @@ const Config = () => {
                 <label htmlFor='clientName' className='font-medium text-lg'>Nombre del cliente (ClientName):</label>
                 <input
                   type="text"
-                  value={clientName}
+                  value={ clientName }
                   id='clientName'
                   name='clientName'
-                  className='bg-blue-100 w-full mt-2 ps-2 py-2 rounded-lg outline-blue-700' 
-                  onChange={(e) => setClientName(e.target.value)}
-                  disabled={!checked}
+                  className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                  onChange={ (e) => setClientName(e.target.value) }
+                  disabled={ !checked }
                 />
               </div>
             </section>
 
 
-            <div className="my-3 md:my-5">
-              <h3 className='font-bold text-2xl mb-5'>paymentPlacesConfigurations</h3>
+            <div className="my-3 md:my-8">
+              <h3 className='font-bold text-2xl mb-5'>Configuraciones de lugares de pago (paymentPlacesConfigurations)</h3>
 
-              <section className='grid grid-cols-2 gap-8'>
+              <section className='grid grid-cols-2 gap-6 mb-8'>
 
                 <div>
                   <div className='mb-3'>
@@ -111,10 +111,10 @@ const Config = () => {
                     <select 
                       name="provider" 
                       id="provider" 
-                      value={provider || "0"} 
-                      className='bg-blue-100 w-full mt-2 ps-2 py-2 rounded-lg outline-blue-700'
-                      onChange={(e) => setProvider(e.target.value)}
-                      disabled={true}
+                      value={ provider || "0" } 
+                      className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                      onChange={ (e) => setProvider(e.target.value) }
+                      disabled={ true }
                     >
                       <option value="0">Zona Pagos</option>
                       <option value="1">Efecty</option>
@@ -125,12 +125,12 @@ const Config = () => {
                     <label htmlFor='commerceId' className='font-medium text-lg'>ID del comercio (CommerceId):</label>
                     <input
                       type="text"
-                      value={commerceId}
+                      value={ commerceId }
                       id='commerceId'
                       name='commerceId'
-                      className='bg-blue-100 w-full mt-2 ps-2 py-2 rounded-lg outline-blue-700'
-                      onChange={(e) => setCommerceId(e.target.value)}
-                      disabled={!checked}
+                      className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                      onChange={ (e) => setCommerceId(e.target.value) }
+                      disabled={ !checked }
                     />
                   </div>
 
@@ -138,12 +138,12 @@ const Config = () => {
                     <label htmlFor='bankId' className='font-medium text-lg my-3'>ID del banco (BankId):</label>
                     <input
                       type="text"
-                      value={bankId}
+                      value={ bankId }
                       id='bankId'
                       name='bankId'
-                      className='bg-blue-100 w-full mt-2 ps-2 py-2 rounded-lg outline-blue-700'
-                      onChange={(e) => setBankId(e.target.value)}
-                      disabled={!checked}
+                      className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                      onChange={ (e) => setBankId(e.target.value) }
+                      disabled={ !checked }
                     />
                   </div>
                 </div>
@@ -153,12 +153,12 @@ const Config = () => {
                     <label htmlFor='password' className='font-medium text-lg my-3'>Contraseña (Password):</label>
                     <input 
                       type="text"
-                      value={password}
+                      value={ password }
                       id='password'
                       name='password'
-                      className='bg-blue-100 w-full mt-2 ps-2 py-2 rounded-lg outline-blue-700'
-                      onChange={(e) => setPassword(e.target.value)}
-                      disabled={!checked}
+                      className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                      onChange={ (e) => setPassword(e.target.value) }
+                      disabled={ !checked }
                     />
                   </div>
 
@@ -166,12 +166,12 @@ const Config = () => {
                     <label htmlFor='paymentPlaceId' className='font-medium text-lg'>ID del lugar de pago (PaymentPlaceId):</label>
                     <input
                       type="text"
-                      value={paymentPlaceId}
+                      value={ paymentPlaceId }
                       id='paymentPlaceId'
                       name='paymentPlaceId'
-                      className='bg-blue-100 w-full mt-2 ps-2 py-2 rounded-lg outline-blue-700'
-                      onChange={(e) => setPaymentPlaceId(e.target.value)}
-                      disabled={!checked}
+                      className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                      onChange={ (e) => setPaymentPlaceId(e.target.value) }
+                      disabled={ !checked }
                     />
                   </div>
                 </div>
@@ -179,20 +179,21 @@ const Config = () => {
 
 
 
-              <section className='grid grid-cols-2 gap-8 mt-5'>
+              <section className='grid grid-cols-2 gap-8 my-8'>
+
                 <div>
-                  <h3 className='font-bold text-2xl mb-3'>searchReferencesService</h3>
+                  <h3 className='font-bold text-2xl mb-5'>Servicio de búsqueda de referencias (searchReferencesService)</h3>
                   <div>
                     <div className='my-3'>
                       <label htmlFor='serviceUrlS' className='font-medium text-lg'>Url del servicio (ServiceUrl):</label>
                       <input
                         type="text"
-                        value={searchReferences.serviceUrl || ''}
+                        value={ searchReferences.serviceUrl || '' }
                         id='serviceUrlS'
                         name='serviceUrlS'
-                        className='bg-blue-100 w-full mt-2 ps-2 py-2 rounded-lg outline-blue-700'
-                        onChange={(e) => setSearchReferences({...searchReferences, serviceUrl: e.target.value})}
-                        disabled={!checked}
+                        className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                        onChange={ (e) => setSearchReferences({...searchReferences, serviceUrl: e.target.value}) }
+                        disabled={ !checked }
                       />
                     </div>
 
@@ -201,13 +202,13 @@ const Config = () => {
                       <select 
                         name='supportLazyLoadingS'
                         id='supportLazyLoadingS' 
-                        className='bg-blue-100 w-full mt-2 ps-2 py-2 rounded-lg outline-blue-700'
-                        value={paymentReferences.supportLazyLoading || false}
-                        onChange={(e) => setPaymentReferences({...paymentReferences, supportLazyLoading: e.target.value})}
-                        disabled={!checked}
+                        className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                        value={ paymentReferences.supportLazyLoading || false }
+                        onChange={ (e) => setPaymentReferences({...paymentReferences, supportLazyLoading: e.target.value}) }
+                        disabled={ !checked }
                       >
-                        <option value={false}>No</option>
-                        <option value={true}>Si</option>
+                        <option value={ false }>No</option>
+                        <option value={ true }>Si</option>
                       </select>
                     </div>
 
@@ -215,12 +216,12 @@ const Config = () => {
                       <label htmlFor='userS' className='font-medium text-lg'>Usuario (User):</label>
                       <input 
                         type="text"
-                        value={searchReferences.user || ''}
+                        value={ searchReferences.user || '' }
                         id='userS'
                         name='userS'
-                        className='bg-blue-100 w-full mt-2 ps-2 py-2 rounded-lg outline-blue-700'
-                        onChange={(e) => setSearchReferences({...searchReferences, user: e.target.value})}
-                        disabled={!checked}
+                        className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                        onChange={ (e) => setSearchReferences({...searchReferences, user: e.target.value}) }
+                        disabled={ !checked }
                       />
                     </div>
 
@@ -228,30 +229,30 @@ const Config = () => {
                       <label htmlFor='passwordS' className='font-medium text-lg'>Contraseña (Password):</label>
                       <input
                         type="text"
-                        value={searchReferences.password || ''}
+                        value={ searchReferences.password || '' }
                         id='passwordS'
                         name='passwordS'
-                        className='bg-blue-100 w-full mt-2 ps-2 py-2 rounded-lg outline-blue-700'
-                        onChange={(e) => setSearchReferences({...searchReferences, password: e.target.value})}
-                        disabled={!checked}
+                        className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                        onChange={ (e) => setSearchReferences({...searchReferences, password: e.target.value}) }
+                        disabled={ !checked }
                       />
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <h3 className='font-bold text-2xl mb-3'>paymentReferenceService</h3>
+                  <h3 className='font-bold text-2xl mb-5'>Servicio de referencia de pago (paymentReferenceService)</h3>
                   <div>
                     <div className='my-3'>
                       <label htmlFor='serviceUrlP' className='font-medium text-lg'>Url del servicio (ServiceUrl):</label>
                       <input 
                         type="text" 
-                        value={paymentReferences.serviceUrl || ''} 
+                        value={ paymentReferences.serviceUrl || '' } 
                         id='serviceUrlP' 
-                        name='serviceUrlP' 
-                        className='bg-blue-100 w-full mt-2 ps-2 py-2 rounded-lg outline-blue-700' 
-                        onChange={(e) => setPaymentReferences({...paymentReferences, serviceUrl: e.target.value})}
-                        disabled={!checked}
+                        name='serviceUrlP'
+                        className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` } 
+                        onChange={ (e) => setPaymentReferences({...paymentReferences, serviceUrl: e.target.value}) }
+                        disabled={ !checked }
                       />
                     </div>
 
@@ -260,13 +261,13 @@ const Config = () => {
                       <select 
                         name='supportLazyLoadingP' 
                         id='supportLazyLoadingP' 
-                        className='bg-blue-100 w-full mt-2 ps-2 py-2 rounded-lg outline-blue-700'
-                        value={paymentReferences.supportLazyLoading || false}
-                        onChange={(e) => setPaymentReferences({...paymentReferences, supportLazyLoading: e.target.value})}
-                        disabled={!checked}
+                        className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                        value={ paymentReferences.supportLazyLoading || false }
+                        onChange={ (e) => setPaymentReferences({...paymentReferences, supportLazyLoading: e.target.value}) }
+                        disabled={ !checked }
                       >
-                        <option value={false}>No</option>
-                        <option value={true}>Si</option>
+                        <option value={ false }>No</option>
+                        <option value={ true }>Si</option>
                       </select>
                     </div>
 
@@ -274,12 +275,12 @@ const Config = () => {
                       <label htmlFor='userP' className='font-medium text-lg'>Usuario (User):</label>
                       <input 
                         type="text" 
-                        value={paymentReferences.user || ''} 
+                        value={ paymentReferences.user || '' } 
                         id='userP' 
                         name='userP' 
-                        className='bg-blue-100 w-full mt-2 ps-2 py-2 rounded-lg outline-blue-700'
-                        onChange={(e) => setPaymentReferences({...paymentReferences, user: e.target.value})}
-                        disabled={!checked}
+                        className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                        onChange={ (e) => setPaymentReferences({...paymentReferences, user: e.target.value}) }
+                        disabled={ !checked }
                       />
                     </div>
 
@@ -287,12 +288,12 @@ const Config = () => {
                       <label htmlFor='passwordP' className='font-medium text-lg'>Contraseña (Password):</label>
                       <input 
                         type="text" 
-                        value={paymentReferences.password || ''} 
+                        value={ paymentReferences.password || '' } 
                         id='passwordP' 
                         name='passwordP' 
-                        className='bg-blue-100 w-full mt-2 ps-2 py-2 rounded-lg outline-blue-700'
-                        onChange={(e) => setPaymentReferences({...paymentReferences, password: e.target.value})}
-                        disabled={!checked}
+                        className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                        onChange={ (e) => setPaymentReferences({...paymentReferences, password: e.target.value}) }
+                        disabled={ !checked }
                       />
                     </div>
                   </div>
@@ -301,8 +302,8 @@ const Config = () => {
             </div>
           </div>
 
-          <div>
-            <button className='bg-blue-800 text-white font-bold px-6 py-2 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline' disabled={!checked} type='submit'>Actualizar datos</button>
+          <div className='w-1/4 mx-auto'>
+            <ModalConfirm checked={ checked } />
           </div>
         </form>
       </section>

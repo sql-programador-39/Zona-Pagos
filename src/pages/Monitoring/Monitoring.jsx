@@ -3,6 +3,9 @@ import ConfigTable from '../../components/ConfigTable/ConfigTable'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { setFollowedPaysFilter } from '../../api/api'
+import LoadModal from '../../components/LoadModal/LoadModal'
+
+import { validateInitialFinal, validateInitialDate, validateFinalDate } from "../../helpers/dateValidations"
 
 import Alert from '../../components/Alert/Alert'
 
@@ -10,25 +13,75 @@ import { style } from '../Config/styleConfig'
 
 const Monitoring = () => {
 
+  const finalDate = new Date()
+  const InitalDate = new Date(finalDate);
+  InitalDate.setDate(InitalDate.getDate() - 30);
+
+  const InitalDateFormat = InitalDate.toISOString().split('T')[0];
+
   const [filterAlert, setFilterAlert] = useState(false)
   const [infoTable, setInfoTable] = useState([])
-  const [dateStart, setDateStart] = useState('')
-  const [dateEnd, setDateEnd] = useState('')
+  const [dateStart, setDateStart] = useState(InitalDateFormat)
+  const [dateEnd, setDateEnd] = useState(finalDate.toISOString().split('T')[0])
   const [typeCollection, setTypeCollection] = useState('')
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleSubmitFilter = async (e) => {
 
     e.preventDefault()
 
     if([typeCollection, dateStart, dateEnd].includes('')) {
-      setFilterAlert(true)
+      setFilterAlert({
+        msg: 'Por favor completa todos los campos.',
+      })
       setTimeout(() => {
-        setFilterAlert(false)
+        setFilterAlert({})
       }, 4000)
       return
     }
 
+    if(!validateInitialFinal(dateStart, dateEnd)) {
+      setFilterAlert({
+        msg: 'La fecha inicial no puede ser mayor a la fecha final, por favor selecciona una fecha válida.',
+      })
+      
+      setTimeout(() => {
+        setFilterAlert({})
+      }, 4000)
+
+      return
+    }
+
+    if(!validateInitialDate(dateStart, dateEnd)) {
+      setFilterAlert({
+        msg: 'El rango de fecha no puede ser mayor a 30 días, por favor selecciona un rango válido.',
+      })
+      
+      setTimeout(() => {
+        setFilterAlert({})
+      }, 4000)
+
+      return
+    }
+
+    if(!validateFinalDate(dateEnd)) {
+      setFilterAlert({
+        msg: 'La fecha final no puede ser mayor a la fecha del día de hoy, por favor selecciona una fecha válida.',
+      })
+
+      setTimeout(() => {
+        setFilterAlert({})
+      }, 4000)
+
+      return
+    }
+
+    setIsModalOpen(true)
+
     const data = await setFollowedPaysFilter({ typeCollection, dateStart, dateEnd })
+
+    setIsModalOpen(false)
+
     setInfoTable(data)
   }
 
@@ -49,7 +102,7 @@ const Monitoring = () => {
                   setTypeCollection(e.target.value)
                 }}
               >
-                <option value="0">Seleccione</option>
+                <option value="0">-- Seleccione el tipo --</option>
                 <option value="realizados">Pagos Realizados</option>
                 <option value="reversados">Pagos Reversados</option>
                 <option value="ambos">Ambos</option>
@@ -68,6 +121,7 @@ const Monitoring = () => {
                   onChange={ e => {
                     setDateStart(e.target.value)
                   }}
+                  value={ dateStart }
                 />
                 <input 
                   type="date" 
@@ -75,6 +129,7 @@ const Monitoring = () => {
                   onChange={ e => {
                     setDateEnd(e.target.value)
                   }}
+                  value={ dateEnd }
                 />
 
                 <button 
@@ -98,7 +153,7 @@ const Monitoring = () => {
 
             </div>
             
-            { filterAlert && <Alert msg="Para poder filtrar la informacion todos los campos se deben llenar" /> }
+            { filterAlert.msg && <Alert msg={filterAlert.msg} /> }
           </form>
 
         </div>
@@ -109,6 +164,8 @@ const Monitoring = () => {
           data={ infoTable }
         />
       </div>
+
+      { isModalOpen && <LoadModal isModalOpen={ isModalOpen } />}
     </>
   )
 }

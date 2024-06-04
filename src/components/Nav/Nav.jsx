@@ -9,6 +9,7 @@ import { style } from './styleNav';
 
 import user from '../../assets/user.png';
 import LogoOpa from '../../assets/Logo-opa.png';
+import Drop from './Drop';
 
 
 const Nav = () => {
@@ -16,6 +17,7 @@ const Nav = () => {
   const { setIsAuthenticaded } = useAuth();
 
   const [hamCollapsed, setHamCollapsed] = useState(false);
+  const [reference, setReference] = useState("Zona Pagos");
   const dropdownRef = useRef();
 
   const handleSignOutClick = () => {
@@ -82,9 +84,12 @@ const Nav = () => {
   return (
     <div>
       <nav className={ `${style.nav} bg-white` }>
-        <div className='flex items-center gap-5'>
+        <div className='flex items-center gap-5 w-2/4'>
           <img src={ LogoOpa } alt="Logo-opa" width={ "65px" } height={ "40px" } />
-          <p className='text-2xl font-bold'>Zona Pagos</p>
+          <Drop 
+            reference={ reference }
+            setReference={ setReference }
+          />
         </div>
 
         <div className='border-l-2 pl-5 cursor-pointer'>
@@ -92,7 +97,7 @@ const Nav = () => {
             menu={ { items } }
             trigger={ ['click'] }
           >
-            <div ref={ dropdownRef }> 
+            <div ref={dropdownRef}> 
               <Space>
                 OPA S.A.S
                 <div className='flex items-center'>
