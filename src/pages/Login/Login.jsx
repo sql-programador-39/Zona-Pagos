@@ -3,12 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Switch } from 'antd';
 import { style } from '../Config/styleConfig';
 
-import img1 from '../../assets/1.png';
-import img2 from '../../assets/2.png';
-import img3 from '../../assets/3.png';
-import img4 from '../../assets/4.png';
-import img5 from '../../assets/5.png';
-import img7 from '../../assets/7.webp';
+import img7 from '../../assets/photoLogin.jpg';
 
 const Login = () => {
 
@@ -35,32 +30,9 @@ const Login = () => {
             <p className='text-xl'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea nobis iste odio maiores provident illo corrupti quisquam, repudiandae quia voluptatibus. Expedita excepturi modi doloremque quod voluptatem exercitationem minus, velit distinctio.</p>
           </div>
 
-          <div className="flex gap-5 my-5 mx-16">
-
-            <div className="w-12 h-12">
-              <img src={ img1 } alt="" />
-            </div>
-            
-            <div className="w-12 h-12">
-              <img src={ img2 } alt="" />
-            </div>
-            
-            <div className="w-12 h-12">
-              <img src={ img3 } alt="" />
-            </div>
-            
-            <div className="w-12 h-12">
-              <img src={ img4 } alt="" />
-            </div>
-            
-            <div className="w-12 h-12">
-              <img src={ img5 } alt="" />
-            </div>
-          </div>
-
           <div className='mx-16'>
             <div className="mt-5 w-full h-96">
-              <img className='h-full bg-cover w-full rounded' src={ img7 } alt="" />
+              <img className='h-full bg-cover w-full rounded-lg' src={ img7 } alt="" />
             </div>
           </div>
 
