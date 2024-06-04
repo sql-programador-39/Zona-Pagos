@@ -23,7 +23,7 @@ const ConfigProvider = ({children}) => {
 
   const getConfig = async () => {
 
-    const url = 'http://localhost:9090/api/ZOpaOperations/ConfiguracionGeneral'
+    const url = 'https://recaudos-stage.opa.com.co/ZOPA/api/ZOpaOperations/ConfiguracionGeneral'
 
     try {
       const response = await axios.post(url)
@@ -75,7 +75,7 @@ const ConfigProvider = ({children}) => {
   }
 
   const sendInfo = async (escaped) => {
-    const url = 'http://localhost:9090/api/ZOpaOperations/ActualizarConfiguracionGeneral'
+    const url = 'https://recaudos-stage.opa.com.co/ZOPA/api/ZOpaOperations/ActualizarConfiguracionGeneral'
 
     setLoading(true)
 

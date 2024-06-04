@@ -2,7 +2,7 @@ import axios from 'axios';
 import { formatDate, formatMoney } from '../helpers/formatters';
 
 const setFollowedPaysFilter = async (filter) => {
-  const url = `http://localhost:9090/SeguimientoPagos`;
+  const url = `https://recaudos-stage.opa.com.co/ZOPA/SeguimientoPagos`;
 
   let type;
 
@@ -17,8 +17,8 @@ const setFollowedPaysFilter = async (filter) => {
   try {
     const response = await axios.post(url, {
       "paymentType": type,
-      "initDate": filter.dateStart,
-      "finalDate": filter.dateEnd
+      "initDate": filter.dateStart + "T00:00:00.000Z",
+      "finalDate": filter.dateEnd + "T23:59:59.000Z"
     });
 
     let objFollowed = [];
@@ -41,7 +41,7 @@ const setFollowedPaysFilter = async (filter) => {
 }
 
 const getInfoCollections = async () => {
-  const url = `http://localhost:9090/ObtenerReferenciasPuntoRecaudo`;
+  const url = `https://recaudos-stage.opa.com.co/ZOPA/ObtenerReferenciasPuntoRecaudo`;
 
   try {
     const response = await axios.post(url);
@@ -106,7 +106,7 @@ const getInfoCollections = async () => {
 }
 
 const sendInfoProcessed = async (info) => {
-  const url = `http://localhost:9090/ExcludeProductInCompanyReference`;
+  const url = `https://recaudos-stage.opa.com.co/ZOPA/ExcludeProductInCompanyReference`;
 
   try {
     const response = await axios.post(url, info);
