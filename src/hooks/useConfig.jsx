@@ -1,9 +1,9 @@
-import { useContext } from "react";
-import ConfigProvider from "../context/ConfigProvider";
+import { useContext } from "react"
 
+import ConfigProvider from "../context/ConfigProvider"
 
 const useConfig = () => {
-  return useContext(ConfigProvider);
+  return useContext(ConfigProvider)
 }
 
-export default useConfig;
+export default useConfig

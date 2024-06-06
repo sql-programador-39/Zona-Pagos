@@ -1,9 +1,9 @@
 import { Dropdown, Space } from "antd"
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronDown, faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons'
 
-import EfectyIcon from '../../assets/efecty.png';
+import EfectyIcon from '../../assets/efecty.png'
 
 const Drop = ({reference, setReference}) => {
 

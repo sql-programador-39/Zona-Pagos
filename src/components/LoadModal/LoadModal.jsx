@@ -1,4 +1,5 @@
 import { Modal } from 'antd'
+
 import Spinner from '../Spinner/Spinner'
 
 const LoadModal = ({ isModalOpen }) => {

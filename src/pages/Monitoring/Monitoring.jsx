@@ -1,8 +1,11 @@
 import { useState } from 'react'
-import ConfigTable from '../../components/ConfigTable/ConfigTable'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
+
 import { setFollowedPaysFilter } from '../../api/api'
+
+import ConfigTable from '../../components/ConfigTable/ConfigTable'
 import LoadModal from '../../components/LoadModal/LoadModal'
 
 import { validateInitialFinal, validateInitialDate, validateFinalDate } from "../../helpers/dateValidations"
@@ -80,9 +83,22 @@ const Monitoring = () => {
 
     const data = await setFollowedPaysFilter({ typeCollection, dateStart, dateEnd })
 
-    setIsModalOpen(false)
+    console.log(data);
 
-    setInfoTable(data)
+    if(data.message) {
+      setFilterAlert({
+        msg: "Error al cargar la información, por favor intenta de nuevo.",
+      })
+      setIsModalOpen(false)
+
+      setTimeout(() => {
+        setFilterAlert({})
+      }, 4000)
+
+    } else {
+      setIsModalOpen(false)
+      setInfoTable(data)
+    }
   }
 
   return (
@@ -153,8 +169,11 @@ const Monitoring = () => {
 
             </div>
             
-            { filterAlert.msg && <Alert msg={filterAlert.msg} /> }
           </form>
+
+          <div className='w-2/4 mx-auto mt-5'>
+            { filterAlert.msg && <Alert msg={filterAlert.msg} /> }
+          </div>
 
         </div>
       </section>

@@ -31,12 +31,10 @@ const setFollowedPaysFilter = async (filter) => {
       objFollowed = [...objFollowed, newItem]
     });
 
-    console.log(objFollowed);
-
     return objFollowed;
 
   } catch (error) {
-    console.log(error);
+    return error;
   }
 }
 
@@ -101,7 +99,7 @@ const getInfoCollections = async () => {
 
     return firstRow;
   } catch (error) {
-    console.log(error);
+    return error;
   }
 }
 

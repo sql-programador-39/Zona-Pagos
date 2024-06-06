@@ -1,27 +1,28 @@
-import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Dropdown, Space } from 'antd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPowerOff, faGears, faSackDollar, faX, faBars, faMagnifyingGlassChart } from '@fortawesome/free-solid-svg-icons';
+import { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
-import useAuth from '../../hooks/useAuth';
-import { style } from './styleNav';
+import { Dropdown, Space } from 'antd'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPowerOff, faGears, faSackDollar, faX, faBars, faMagnifyingGlassChart } from '@fortawesome/free-solid-svg-icons'
 
-import user from '../../assets/user.png';
-import LogoOpa from '../../assets/Logo-opa.png';
-import Drop from './Drop';
+import useAuth from '../../hooks/useAuth'
+import { style } from './styleNav'
+
+import user from '../../assets/user.png'
+import LogoOpa from '../../assets/Logo-opa.png'
+import Drop from './Drop'
 
 
 const Nav = () => {
   
-  const { setIsAuthenticaded } = useAuth();
+  const { setIsAuthenticaded } = useAuth()
 
-  const [hamCollapsed, setHamCollapsed] = useState(false);
-  const [reference, setReference] = useState("Zona Pagos");
-  const dropdownRef = useRef();
+  const [hamCollapsed, setHamCollapsed] = useState(false)
+  const [reference, setReference] = useState("Zona Pagos")
+  const dropdownRef = useRef()
 
   const handleSignOutClick = () => {
-    setIsAuthenticaded(false);
+    setIsAuthenticaded(false)
   }
 
   useEffect(() => {
@@ -29,16 +30,16 @@ const Nav = () => {
     const handleDropdownToggle = () => {
 
       if(dropdownRef.current.classList.contains('ant-dropdown-open')) {
-        setHamCollapsed(true);
+        setHamCollapsed(true)
       } else {
-        setHamCollapsed(false);
+        setHamCollapsed(false)
       }
     };
 
-    document.addEventListener('click', handleDropdownToggle);
+    document.addEventListener('click', handleDropdownToggle)
 
     return () => {
-      document.removeEventListener('click', handleDropdownToggle);
+      document.removeEventListener('click', handleDropdownToggle)
     }
 
   }, [dropdownRef]);

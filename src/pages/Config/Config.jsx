@@ -57,46 +57,171 @@ const Config = () => {
         <form action="">
           <div className="my-3 md:my-5">
 
+            <section >
+              <div className='grid grid-cols-3 gap-4'>
+                <div className=''>
+                  <label htmlFor='companyId' className='font-medium text-lg'>ID de la compañia (CompanyId):</label>
+                  <input 
+                    type="text"
+                    value={ companyId }
+                    id='companyId'
+                    name='companyId' 
+                    className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                    onChange={ (e) => setCompanyId(e.target.value) }
+                    disabled={ !checked }
+                  />
+                </div>
 
-            <section className='grid grid-cols-3 gap-4'>
-              <div className=''>
-                <label htmlFor='companyId' className='font-medium text-lg'>ID de la compañia (CompanyId):</label>
-                <input 
-                  type="text"
-                  value={ companyId }
-                  id='companyId'
-                  name='companyId' 
-                  className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
-                  onChange={ (e) => setCompanyId(e.target.value) }
-                  disabled={ !checked }
-                />
+                <div>
+                  <label htmlFor='clientId' className='font-medium text-lg'>ID del cliente (ClientId):</label>
+                  <input 
+                    type="text"
+                    value={clientId}
+                    id='clientId'
+                    name='clientId'
+                    className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                    onChange={ (e) => setClientId(e.target.value) }
+                    disabled={ !checked }
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor='clientName' className='font-medium text-lg'>Nombre del cliente (ClientName):</label>
+                  <input
+                    type="text"
+                    value={ clientName }
+                    id='clientName'
+                    name='clientName'
+                    className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                    onChange={ (e) => setClientName(e.target.value) }
+                    disabled={ !checked }
+                  />
+                </div>
               </div>
 
               <div>
-                <label htmlFor='clientId' className='font-medium text-lg'>ID del cliente (ClientId):</label>
-                <input 
-                  type="text"
-                  value={clientId}
-                  id='clientId'
-                  name='clientId'
-                  className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
-                  onChange={ (e) => setClientId(e.target.value) }
-                  disabled={ !checked }
-                />
+                <section className='grid grid-cols-2 gap-8 my-8'>
+
+                  <div>
+                    <h3 className='font-bold text-2xl mb-5'>Servicio de búsqueda de referencias (searchReferencesService)</h3>
+                    <div>
+                      <div className='my-3'>
+                        <label htmlFor='serviceUrlS' className='font-medium text-lg'>Url del servicio (ServiceUrl):</label>
+                        <input
+                          type="text"
+                          value={ searchReferences.serviceUrl || '' }
+                          id='serviceUrlS'
+                          name='serviceUrlS'
+                          className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                          onChange={ (e) => setSearchReferences({...searchReferences, serviceUrl: e.target.value}) }
+                          disabled={ !checked }
+                        />
+                      </div>
+
+                      <div className='my-3'>
+                        <label htmlFor='supportLazyLoadingS' className='font-medium text-lg'>Soporte lazy loading (supportLazyLoading):</label>
+                        <select 
+                          name='supportLazyLoadingS'
+                          id='supportLazyLoadingS' 
+                          className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                          value={ paymentReferences.supportLazyLoading || false }
+                          onChange={ (e) => setPaymentReferences({...paymentReferences, supportLazyLoading: e.target.value}) }
+                          disabled={ !checked }
+                        >
+                          <option value={ false }>No</option>
+                          <option value={ true }>Si</option>
+                        </select>
+                      </div>
+
+                      <div className='my-3'>
+                        <label htmlFor='userS' className='font-medium text-lg'>Usuario (User):</label>
+                        <input 
+                          type="text"
+                          value={ searchReferences.user || '' }
+                          id='userS'
+                          name='userS'
+                          className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                          onChange={ (e) => setSearchReferences({...searchReferences, user: e.target.value}) }
+                          disabled={ !checked }
+                        />
+                      </div>
+
+                      <div className='my-3'>
+                        <label htmlFor='passwordS' className='font-medium text-lg'>Contraseña (Password):</label>
+                        <input
+                          type="text"
+                          value={ searchReferences.password || '' }
+                          id='passwordS'
+                          name='passwordS'
+                          className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                          onChange={ (e) => setSearchReferences({...searchReferences, password: e.target.value}) }
+                          disabled={ !checked }
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className='font-bold text-2xl mb-5'>Servicio de referencia de pago (paymentReferenceService)</h3>
+                    <div>
+                      <div className='my-3'>
+                        <label htmlFor='serviceUrlP' className='font-medium text-lg'>Url del servicio (ServiceUrl):</label>
+                        <input 
+                          type="text" 
+                          value={ paymentReferences.serviceUrl || '' } 
+                          id='serviceUrlP' 
+                          name='serviceUrlP'
+                          className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` } 
+                          onChange={ (e) => setPaymentReferences({...paymentReferences, serviceUrl: e.target.value}) }
+                          disabled={ !checked }
+                        />
+                      </div>
+
+                      <div className='my-3'>
+                        <label htmlFor='supportLazyLoadingP' className='font-medium text-lg'>Soporte lazy loading (supportLazyLoading):</label>
+                        <select 
+                          name='supportLazyLoadingP' 
+                          id='supportLazyLoadingP' 
+                          className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                          value={ paymentReferences.supportLazyLoading || false }
+                          onChange={ (e) => setPaymentReferences({...paymentReferences, supportLazyLoading: e.target.value}) }
+                          disabled={ !checked }
+                        >
+                          <option value={ false }>No</option>
+                          <option value={ true }>Si</option>
+                        </select>
+                      </div>
+
+                      <div className='my-3'>
+                        <label htmlFor='userP' className='font-medium text-lg'>Usuario (User):</label>
+                        <input 
+                          type="text" 
+                          value={ paymentReferences.user || '' } 
+                          id='userP' 
+                          name='userP' 
+                          className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                          onChange={ (e) => setPaymentReferences({...paymentReferences, user: e.target.value}) }
+                          disabled={ !checked }
+                        />
+                      </div>
+
+                      <div className='my-3'>
+                        <label htmlFor='passwordP' className='font-medium text-lg'>Contraseña (Password):</label>
+                        <input 
+                          type="text" 
+                          value={ paymentReferences.password || '' } 
+                          id='passwordP' 
+                          name='passwordP' 
+                          className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
+                          onChange={ (e) => setPaymentReferences({...paymentReferences, password: e.target.value}) }
+                          disabled={ !checked }
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
 
-              <div>
-                <label htmlFor='clientName' className='font-medium text-lg'>Nombre del cliente (ClientName):</label>
-                <input
-                  type="text"
-                  value={ clientName }
-                  id='clientName'
-                  name='clientName'
-                  className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
-                  onChange={ (e) => setClientName(e.target.value) }
-                  disabled={ !checked }
-                />
-              </div>
             </section>
 
 
@@ -179,126 +304,7 @@ const Config = () => {
 
 
 
-              <section className='grid grid-cols-2 gap-8 my-8'>
-
-                <div>
-                  <h3 className='font-bold text-2xl mb-5'>Servicio de búsqueda de referencias (searchReferencesService)</h3>
-                  <div>
-                    <div className='my-3'>
-                      <label htmlFor='serviceUrlS' className='font-medium text-lg'>Url del servicio (ServiceUrl):</label>
-                      <input
-                        type="text"
-                        value={ searchReferences.serviceUrl || '' }
-                        id='serviceUrlS'
-                        name='serviceUrlS'
-                        className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
-                        onChange={ (e) => setSearchReferences({...searchReferences, serviceUrl: e.target.value}) }
-                        disabled={ !checked }
-                      />
-                    </div>
-
-                    <div className='my-3'>
-                      <label htmlFor='supportLazyLoadingS' className='font-medium text-lg'>Soporte lazy loading (supportLazyLoading):</label>
-                      <select 
-                        name='supportLazyLoadingS'
-                        id='supportLazyLoadingS' 
-                        className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
-                        value={ paymentReferences.supportLazyLoading || false }
-                        onChange={ (e) => setPaymentReferences({...paymentReferences, supportLazyLoading: e.target.value}) }
-                        disabled={ !checked }
-                      >
-                        <option value={ false }>No</option>
-                        <option value={ true }>Si</option>
-                      </select>
-                    </div>
-
-                    <div className='my-3'>
-                      <label htmlFor='userS' className='font-medium text-lg'>Usuario (User):</label>
-                      <input 
-                        type="text"
-                        value={ searchReferences.user || '' }
-                        id='userS'
-                        name='userS'
-                        className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
-                        onChange={ (e) => setSearchReferences({...searchReferences, user: e.target.value}) }
-                        disabled={ !checked }
-                      />
-                    </div>
-
-                    <div className='my-3'>
-                      <label htmlFor='passwordS' className='font-medium text-lg'>Contraseña (Password):</label>
-                      <input
-                        type="text"
-                        value={ searchReferences.password || '' }
-                        id='passwordS'
-                        name='passwordS'
-                        className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
-                        onChange={ (e) => setSearchReferences({...searchReferences, password: e.target.value}) }
-                        disabled={ !checked }
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className='font-bold text-2xl mb-5'>Servicio de referencia de pago (paymentReferenceService)</h3>
-                  <div>
-                    <div className='my-3'>
-                      <label htmlFor='serviceUrlP' className='font-medium text-lg'>Url del servicio (ServiceUrl):</label>
-                      <input 
-                        type="text" 
-                        value={ paymentReferences.serviceUrl || '' } 
-                        id='serviceUrlP' 
-                        name='serviceUrlP'
-                        className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` } 
-                        onChange={ (e) => setPaymentReferences({...paymentReferences, serviceUrl: e.target.value}) }
-                        disabled={ !checked }
-                      />
-                    </div>
-
-                    <div className='my-3'>
-                      <label htmlFor='supportLazyLoadingP' className='font-medium text-lg'>Soporte lazy loading (supportLazyLoading):</label>
-                      <select 
-                        name='supportLazyLoadingP' 
-                        id='supportLazyLoadingP' 
-                        className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
-                        value={ paymentReferences.supportLazyLoading || false }
-                        onChange={ (e) => setPaymentReferences({...paymentReferences, supportLazyLoading: e.target.value}) }
-                        disabled={ !checked }
-                      >
-                        <option value={ false }>No</option>
-                        <option value={ true }>Si</option>
-                      </select>
-                    </div>
-
-                    <div className='my-3'>
-                      <label htmlFor='userP' className='font-medium text-lg'>Usuario (User):</label>
-                      <input 
-                        type="text" 
-                        value={ paymentReferences.user || '' } 
-                        id='userP' 
-                        name='userP' 
-                        className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
-                        onChange={ (e) => setPaymentReferences({...paymentReferences, user: e.target.value}) }
-                        disabled={ !checked }
-                      />
-                    </div>
-
-                    <div className='my-3'>
-                      <label htmlFor='passwordP' className='font-medium text-lg'>Contraseña (Password):</label>
-                      <input 
-                        type="text" 
-                        value={ paymentReferences.password || '' } 
-                        id='passwordP' 
-                        name='passwordP' 
-                        className={`${ checked ? "bg-zinc-50" : "bg-zinc-200 cursor-not-allowed"}  border border-zinc-300 rounded-lg focus:outline-blue-800 block w-full p-2.5 mt-2` }
-                        onChange={ (e) => setPaymentReferences({...paymentReferences, password: e.target.value}) }
-                        disabled={ !checked }
-                      />
-                    </div>
-                  </div>
-                </div>
-              </section>
+              
             </div>
           </div>
 

@@ -24,7 +24,7 @@ const Collection = () => {
   const [buttonComunication, setButtonComunication] = useState(false)
   const [buttonProcess, setButtonProcess] = useState(false)
   const [infoTable, setInfoTable] = useState([])
-  const [expandedRowKeys, setExpandedRowKeys] = useState([]);
+  const [expandedRowKeys, setExpandedRowKeys] = useState([])
   const [alert, setAlert] = useState("")
   const today = new Date()
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -67,13 +67,25 @@ const Collection = () => {
     }
 
     setIsModalOpen(true)
-    const data = await getInfoCollections(date)
-    
-    setIsModalOpen(false)
-    const dataWithKeys = data.map((item, index) => ({ ...item, key: index.toString() }));
 
-    setInfoTable(dataWithKeys)
-    setButtonProcess(true)
+    const data = await getInfoCollections()
+
+    if(data.message) {
+      setAlert("Error al obtener la información, por favor intenta de nuevo")
+      setIsModalOpen(false)
+
+      setTimeout(() => {
+        setAlert("")
+      }, 4000)
+    } else {
+
+      setIsModalOpen(false)
+      const dataWithKeys = data.map((item, index) => ({ ...item, key: index.toString() }))
+  
+      setInfoTable(dataWithKeys)
+      setButtonProcess(true)
+    }
+    
   }
 
   const handleClickedProcess = async () => {
@@ -104,19 +116,19 @@ const Collection = () => {
               "subProductCode": item2.subCodigoProducto,
               "productId": item2.idProducto,
               "dueValue": convertCurrencyToNumber(item2.valor)
-            };
+            }
   
-            obj2 = objDelete;
+            obj2 = objDelete
           }
 
-          objSend.productReferences.push(obj2);
+          objSend.productReferences.push(obj2)
         }
-      });
+      })
 
-      sendInfoProcessed(objSend);
-      setInfoTable([]);
-      setExpandedRowKeys([]);
-      setButtonProcess(false);
+      sendInfoProcessed(objSend)
+      setInfoTable([])
+      setExpandedRowKeys([])
+      setButtonProcess(false)
     });
   };  
 
@@ -173,7 +185,7 @@ const Collection = () => {
 
         </form>
 
-        <div>
+        <div className="w-2/4 mx-auto">
           { alert.length !== 0 && <Alert msg={alert} /> }
         </div>
 

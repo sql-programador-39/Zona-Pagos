@@ -1,22 +1,23 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
-import { Switch } from 'antd';
-import { style } from '../Config/styleConfig';
+import { Switch } from 'antd'
 
-import img7 from '../../assets/photoLogin.jpg';
+import { style } from '../Config/styleConfig'
+
+import img7 from '../../assets/photoLogin.jpg'
 
 const Login = () => {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleChangeSwitch = (checked) => {
-    console.log(checked);
+    console.log(checked)
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Submit');
-    navigate('/config');
+    e.preventDefault()
+    console.log('Submit')
+    navigate('/config')
   }
 
   return (

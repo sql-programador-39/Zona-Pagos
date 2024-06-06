@@ -1,6 +1,6 @@
 const validateInitialFinal = (initialDate, finalDate) => {
-  const enteredDate = new Date(initialDate);
-  const finalDateInput = new Date(finalDate);
+  const enteredDate = new Date(initialDate)
+  const finalDateInput = new Date(finalDate)
 
   if(enteredDate > finalDateInput) {
     return false
@@ -10,12 +10,12 @@ const validateInitialFinal = (initialDate, finalDate) => {
 
 const validateInitialDate = (initialDate, finalDate) => {
       
-  const enteredDate = new Date(initialDate);
+  const enteredDate = new Date(initialDate)
 
-  const finalDateInput = new Date(finalDate);
+  const finalDateInput = new Date(finalDate)
 
-  const timeDifference = finalDateInput.getTime() - enteredDate.getTime();
-  const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
+  const timeDifference = finalDateInput.getTime() - enteredDate.getTime()
+  const daysDifference = timeDifference / (1000 * 60 * 60 * 24)
 
   if(daysDifference  > 30) {
     return false
@@ -26,9 +26,9 @@ const validateInitialDate = (initialDate, finalDate) => {
 
 const validateFinalDate = (finalDate) => {
 
-  const enteredDate = new Date(finalDate);
+  const enteredDate = new Date(finalDate)
 
-  const currentDate = new Date();
+  const currentDate = new Date()
 
   if(enteredDate > currentDate) {
     return false

@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+
 import { Menu } from 'antd';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear, faSackDollar, faMagnifyingGlassChart } from '@fortawesome/free-solid-svg-icons';
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+
 import './AsideMenu.css';
 
 function getItem(label, key, icon, children, type) {

@@ -1,15 +1,17 @@
-import { useState } from 'react'
 import { Modal } from 'antd'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faServer } from '@fortawesome/free-solid-svg-icons'
+
 import useConfig from '../../hooks/useConfig'
+
 import Spinner from '../Spinner/Spinner'
 
 import AlertModal from '../AlertModal/AlertModal'
 
 const ModalConfirm = ({checked}) => {
 
-  const { handleSubmit, loading, isModalOpen, setIsModalOpen, showAlert } = useConfig();
+  const { handleSubmit, loading, isModalOpen, setIsModalOpen, showAlert } = useConfig()
 
   const showModal = () => {
     setIsModalOpen(true)
@@ -96,4 +98,4 @@ const ModalConfirm = ({checked}) => {
     </>
   );
 };
-export default ModalConfirm;
+export default ModalConfirm

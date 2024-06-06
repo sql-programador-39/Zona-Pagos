@@ -1,12 +1,12 @@
-import { Table, Empty } from 'antd';
+import { Table, Empty } from 'antd'
 
 const ConfigTable = ({ data }) => {
 
   const columns = [
     {
       title: 'Referencia',
-      dataIndex: 'paymentReference',
-      key: 'paymentReference',
+      dataIndex: 'companyReferenceId',
+      key: 'companyReferenceId',
     },
     {
       title: 'Valor',
@@ -28,7 +28,7 @@ const ConfigTable = ({ data }) => {
       dataIndex: 'paymentDate',
       key: 'paymentDate',
     },
-  ];
+  ]
 
   return (
     <>

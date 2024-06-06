@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react'
+
 import axios from 'axios'
 
 const ConfigContext = createContext()
@@ -23,7 +24,7 @@ const ConfigProvider = ({children}) => {
 
   const getConfig = async () => {
 
-    const url = 'https://recaudos-stage.opa.com.co/ZOPA/api/ZOpaOperations/ConfiguracionGeneral'
+    const url = import.meta.env.VITE_URL_BACKEND + 'api/ZOpaOperations/ConfiguracionGeneral'
 
     try {
       const response = await axios.post(url)
@@ -32,11 +33,11 @@ const ConfigProvider = ({children}) => {
       setClientId(data.jsonGeneralConfiguration.clientId)
       setClientName(data.jsonGeneralConfiguration.clientName)
       setCompanyId(data.companyId)
+      setSearchReferences(data.jsonGeneralConfiguration.searchReferencesService)
+      setPaymentReferences(data.jsonGeneralConfiguration.paymentReferenceService)
       setCommerceId(data.paymentPlacesConfigurations[0].commerceId)
       setBankId(data.paymentPlacesConfigurations[0].bankId)
       setPassword(data.paymentPlacesConfigurations[0].password)
-      setSearchReferences(data.paymentPlacesConfigurations[0].searchReferencesService)
-      setPaymentReferences(data.paymentPlacesConfigurations[0].paymentReferenceService)
       setPaymentPlaceId(data.paymentPlacesConfigurations[0].paymentPlaceId)
       setProvider(data.paymentPlacesConfigurations[0].provider)
 
@@ -47,35 +48,21 @@ const ConfigProvider = ({children}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    /* setLoading(true)
-    
-    setTimeout(() => {
-      setLoading(false)
-
-      setShowAlert(true)
-      setTimeout(() => {
-        console.log('Submit')
-        setIsModalOpen(false)
-        setShowAlert(false)
-      }, 3000)
-    }, 5000) */
     
     const updatedObject = {
       "commerceId": commerceId,
       "bankId": bankId,
       "password": password,
       "searchReferencesService": searchReferences,
-      "paymentReferenceService": paymentReferences
+      "paymentReferenceService": paymentReferences   
     }
 
     const escaped = escapeJsonString(updatedObject)
     sendInfo(escaped)
-
   }
 
   const sendInfo = async (escaped) => {
-    const url = 'https://recaudos-stage.opa.com.co/ZOPA/api/ZOpaOperations/ActualizarConfiguracionGeneral'
+    const url = import.meta.env.VITE_URL_BACKEND + 'api/ZOpaOperations/ActualizarConfiguracionGeneral'
 
     setLoading(true)
 
@@ -83,7 +70,9 @@ const ConfigProvider = ({children}) => {
       const response = await axios.post(url, { 
         "jsonGeneralConfiguration": {
           "clientId": clientId,
-          "clientName": clientName
+          "clientName": clientName,
+          "searchReferencesService": searchReferences,
+          "paymentReferenceService": paymentReferences
         },
         "paymentPlacesConfiguration": [
           {
@@ -91,7 +80,7 @@ const ConfigProvider = ({children}) => {
             "provider": Number(provider),
             "unserializedConfiguration": escaped
           }
-        ] 
+        ]
       }
     )
       setLoading(false)
@@ -112,7 +101,7 @@ const ConfigProvider = ({children}) => {
 
       setLoading(false)
       setShowAlert(true)
-      setText('Error al actualizar los datos, pro favor intentelo más tarde.')
+      setText('Error al actualizar los datos, por favor intentelo más tarde.')
       setType('error')
       setTimeout(() => {
         setShowAlert(false)
@@ -124,12 +113,12 @@ const ConfigProvider = ({children}) => {
   }
 
   const escapeJsonString = (jsonObject) => {
-    const jsonString = JSON.stringify(jsonObject, null, 2);
+    const jsonString = JSON.stringify(jsonObject, null, 2)
     return jsonString
       .replace(/</g, '\\u003c')
       .replace(/>/g, '\\u003e')
       .replace(/&/g, '\\u0026')
-      .replace(/'/g, '\\u0027');
+      .replace(/'/g, '\\u0027')
   };
 
   return (

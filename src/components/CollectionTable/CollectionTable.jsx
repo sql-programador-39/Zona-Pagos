@@ -1,16 +1,26 @@
-import { useState, useEffect } from 'react';
-import { Table, Empty, Checkbox } from 'antd';
+import { useState, useEffect,useRef } from 'react'
 
-import './CollectionTable.css';
-import { convertCurrencyToNumber, formatMoney } from '../../helpers/formatters';
+import { Table, Empty, Checkbox } from 'antd'
+import { Button, Input, Space } from 'antd'
+
+import { SearchOutlined } from '@ant-design/icons'
+import Highlighter from 'react-highlight-words'
+
+import { convertCurrencyToNumber, formatMoney } from '../../helpers/formatters'
+
+import './CollectionTable.css'
 
 const CollectionTable = ({ data, setInfoTable, expandedRowKeys, setExpandedRowKeys }) => {
-  const [localData, setLocalData] = useState([]);
+
+  const [localData, setLocalData] = useState([])
+  const [searchText, setSearchText] = useState('')
+  const [searchedColumn, setSearchedColumn] = useState('')
+  const searchInput = useRef(null)
 
   useEffect(() => {
-    const updatedData = addDisableds(data);
-    setLocalData(updatedData);
-  }, [data]);
+    const updatedData = addDisableds(data)
+    setLocalData(updatedData)
+  }, [data])
 
   const addDisableds = (data) => {
     return data.map((item) => {
@@ -22,7 +32,7 @@ const CollectionTable = ({ data, setInfoTable, expandedRowKeys, setExpandedRowKe
       }));
       return updatedItem;
     });
-  };
+  }
 
   const handleCheckboxOne = (rowIndex, record) => {
     const updatedData = localData.map((item) => {
@@ -55,7 +65,113 @@ const CollectionTable = ({ data, setInfoTable, expandedRowKeys, setExpandedRowKe
 
     setLocalData(updatedData);
     setInfoTable([...updatedData]);
-  };
+  }
+
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  }
+
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText('');
+  }
+  
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+      <div
+        style={{
+          padding: 8,
+        }}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <Input
+          ref={searchInput}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{
+            marginBottom: 8,
+            display: 'block',
+          }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Buscar
+          </Button>
+          <Button
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Resetear
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              confirm({
+                closeDropdown: false,
+              });
+              setSearchText(selectedKeys[0]);
+              setSearchedColumn(dataIndex);
+            }}
+          >
+            Filtrar
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              close();
+            }}
+          >
+            Cerrar
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined
+        style={{
+          color: filtered ? '#1677ff' : undefined,
+        }}
+      />
+    ),
+    onFilter: (value, record) =>
+      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{
+            backgroundColor: '#ffc069',
+            padding: 0,
+          }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ''}
+        />
+      ) : (
+        text
+      ),
+  })
 
   const expandedRowRender = (record) => {
     const columns = [
@@ -99,11 +215,11 @@ const CollectionTable = ({ data, setInfoTable, expandedRowKeys, setExpandedRowKe
                 onChange={() => handleCheckboxOne(rowIndex, record)}
               />
             </label>
-          );
+          )
         },
         align: 'center',
       },
-    ];
+    ]
 
     const dataSecondRow = record.originalCompanyReference || [];
     return <Table columns={columns} dataSource={dataSecondRow} pagination={false} rowKey={(record) => record.referenciaProducto} />;
@@ -112,8 +228,8 @@ const CollectionTable = ({ data, setInfoTable, expandedRowKeys, setExpandedRowKe
   const handleExpand = (expanded, record) => {
     const keys = expanded
       ? [...expandedRowKeys, record.key]
-      : expandedRowKeys.filter(key => key !== record.key);
-    setExpandedRowKeys(keys);
+      : expandedRowKeys.filter(key => key !== record.key)
+    setExpandedRowKeys(keys)
   };
 
   const columns = [
@@ -126,6 +242,7 @@ const CollectionTable = ({ data, setInfoTable, expandedRowKeys, setExpandedRowKe
       title: 'Cedula',
       dataIndex: 'cedula',
       key: 'cedula',
+      ...getColumnSearchProps('cedula'),
     },
     {
       title: 'Fecha',
@@ -137,7 +254,7 @@ const CollectionTable = ({ data, setInfoTable, expandedRowKeys, setExpandedRowKe
       dataIndex: 'total',
       key: 'total',
     },
-  ];
+  ]
 
   return (
     <Table
@@ -157,7 +274,7 @@ const CollectionTable = ({ data, setInfoTable, expandedRowKeys, setExpandedRowKe
       dataSource={localData}
       size="small"
     />
-  );
-};
+  )
+}
 
-export default CollectionTable;
+export default CollectionTable
